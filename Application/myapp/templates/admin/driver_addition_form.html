@@ -1,0 +1,83 @@
+{% extends "admin/master.html" %}
+
+{% block head_css %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_driver.css') }}">
+{% endblock head_css %}
+
+{% block body %}
+    <div class="cont">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="r_no">Registration no:</label>
+                <input type="number" name="registration_no" id="r_no">
+            </div>
+            <div>
+                <label for="fleet">Fleet no:</label>
+                <input type="number" name="fleet" id="fleet">
+            </div>
+
+            <div>
+                <label for="milage">Milage:</label>
+                <input type="number" name="milage" id="milage">
+            </div>
+
+            <div>
+                <label for="driver_license">Driver License:</label>
+                <input type="file" name="driver_license" id="driver_license"
+                accept="image/*">
+            </div>
+
+            <div>
+                <label for="username">Full name and surname:</label>
+                <input type="text" name="username" id="username">
+            </div>
+
+            <div>
+                <label for="id_no">ID NO (Attach Copy)</label>
+                <input type="file" name="id_no" accept="image/*" id="id_no">
+            </div>
+
+            <div>
+                <label for="drivers_license_no">Drivers License No:</label>
+                <input type="number" name="drivers_license_no" id="drivers_license_no">
+            </div>
+
+            <div>
+                <label for="select">Drivers License Endorsed
+                </label>
+                <select id="select" name="license_endorsed">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <label for="license_renewal">Drivers License Renewal Date</label>
+            <input type="date" name="license_renewal" id="license_renewal">
+
+            <label for="cell_no">Cell No:</label>
+            <input type="number" name="cell_no" id="cell_no">
+
+            <label for="family_member">Family Member</label>
+            <input type="text" name="family_member" id="family_member">
+
+            <label for="email">Email Adress</label>
+            <input type="email" name="email" id="email">
+
+            <label for="password">password</label>
+            <input type="password" name="password" id="password">
+
+            <h4>I hereby accept full Responsibility for the Company Vehicle and
+                will see to it
+                that all services is done in time at the Manufacturer Dealership. I will adhere to Fleet Policy and keep
+                the Vehicle clean at all times.
+                <hr style="width:100%; height: 4px; background-color: black; margin-bottom: 30px; ">
+            </h4>
+ 
+            <input type="submit" value="Add Driver" class="btn btn-info m-auto d-block">
+
+
+        </form>
+
+    </div>
+{% endblock body %}

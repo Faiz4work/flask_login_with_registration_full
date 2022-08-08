@@ -1,0 +1,29 @@
+
+.cont {
+    width: 60%;
+    /* display: flex; */
+    margin: auto;
+}
+form{
+    margin: 30px auto;
+}
+label{
+    display: block;
+    margin: 10px 0;
+}
+input{
+    border-radius: 8px;
+    height: 25px;
+}
+/* .btn{
+    display: grid;
+    margin: 0px 90px;
+    padding-bottom: 30px;
+} */
+/* .btn input{
+    width: 85px;
+    height: 31px;
+    text-align: center;
+    font-size: 16px;
+} */
+
