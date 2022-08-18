@@ -1,0 +1,6 @@
+1) hide bell, setting and flag icon.
+2) replace "Dashboard" link to "/"
+3) make dummy table in dashboard page
+4) change "APPS" to "Expenses Forms"
+5) replace "Mail" text to "Fleet card order form".
+6) replace "Chat" to "Maintanance and Tyres"

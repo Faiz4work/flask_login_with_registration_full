@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="main">
+    <div class="card">       
+        <div class="card-body">                 
+            <h4>Fleet card form</h4>
+
+            <form class="row g-3 needs-validation" novalidate>
+
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Registration No.</label>
+                    <input type="number" class="form-control" id="validationCustom01" value="094538" required />
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Vehicle Manufacturer</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required />
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="validationCustomUsername" class="form-label">Driver</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="validationCustom03" class="form-label">Take on odo</label>
+                    <input type="text" class="form-control" id="validationCustom03" required />
+                </div>
+
+                <div class="col-md-4">
+                    <label for="validationCustom04" class="form-label">Date of first registeration</label>
+                    <input type="date" class="form-control" id="validationCutom04" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="validationCustom05" class="form-label">Model</label>
+                    <input type="text" class="form-control" id="validationCustom05" required />
+                </div>
+
+
+                <div class="col-md-4">
+                    <label for="Color" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="Color" required />
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="Mobile Number" class="form-label">Mobile Number</label>
+                    <input type="text" class="form-control" id="Mobile Number" required />
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="engine" class="form-label">Engine No.</label>
+                    <input type="text" class="form-control" id="engine" required />
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="vin" class="form-label">Vin No.</label>
+                    <input type="text" class="form-control" id="vin" required />
+                </div>
+
+                <div class="col-md-4">
+                    <label for="tank" class="form-label">Tank Capacity</label>
+                    <input type="text" class="form-control" id="tank" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="employee" class="form-label">Employee No.</label>
+                    <input type="text" class="form-control" id="employee" required />
+                </div>
+
+
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+            </form>  
+      </div>
+  </div>
+</div>
+
+{% endblock body %}

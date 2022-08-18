@@ -10,3 +10,9 @@ def vehicle_expense():
     vehicle = Vehicle.query.filter_by(driver_id=current_user.id).first()
     return render_template("expenses/vehicle_expense_form.html",
                            vehicle=vehicle)
+    
+
+@expense_and_reports.route("/fleet_card_form")
+@login_required
+def fleet_card_form():
+    return render_template("expenses/fleet_card_form.html")
