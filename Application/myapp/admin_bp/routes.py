@@ -6,7 +6,7 @@ from myapp import db
 from flask_admin import BaseView, expose
 from flask_login import current_user
 from flask_admin.menu import MenuLink
-from flask import request, flash
+from flask import request, flash, redirect, url_for
 from datetime import datetime
 import os
 
@@ -44,8 +44,25 @@ admin.add_view(UserView(User, db.session, endpoint="Users"))
 admin.add_link(MenuLink(name="Logout", url="/logout"))
 
 
+
+
+
+# Adding drivers list in admin page
+class DriversList(BaseView):
+    @expose("/")
+    def index(self):
+        drivers = User.query.filter_by(is_admin=False).all()
+        return self.render("admin/drivers_list.html", drivers=drivers)
+
+admin.add_view(DriversList(name="Drivers List", endpoint="drivers_list"))
+
+
+# Adding vehicle model in view
+admin.add_view(ModelView(Vehicle, db.session))
+
+
 # adding drivers form
-class DriverPage(BaseView):
+class DriverForm(BaseView):
     @expose("/", methods=["GET", "POST"])
     def index(self):
         if request.method == "POST":
@@ -66,12 +83,16 @@ class DriverPage(BaseView):
             image_upload_path = os.path.join(os.getcwd(), "myapp", "static", "drivers_images")
             
             # saving driver license image
-            driver_license_image_name = driver_license_image.filename
+            dfilename = driver_license_image.filename
+            new_dfilename = f"{registration_no}_{username}_{dfilename}"
+            driver_license_image_name = new_dfilename
             driver_license_image.save(os.path.join(image_upload_path, driver_license_image_name))
             driver_license_image_full_path = "static/drivers_images/" + driver_license_image_name
             
             # saving driver id no
-            id_no_image_name = id_no_image.filename
+            idfilename = id_no_image.filename
+            new_id_filename = f"{registration_no}_id_no_image_{idfilename}"
+            id_no_image_name = new_id_filename
             id_no_image.save(os.path.join(image_upload_path, id_no_image_name))
             id_no_image_full_path = "static/drivers_images/" + id_no_image_name
             
@@ -86,14 +107,11 @@ class DriverPage(BaseView):
             db.session.add(user)
             # try:
             db.session.commit()
-            flash(f"{username} has been added.", "danger")  
+            flash(f"{username} has been added.", "danger")
+            return redirect(url_for("drivers_list.index")) 
             # except Exception as e:
             #     print(f"Exception caught as: {e}")
             #     db.session.rollback()
         return self.render("admin/driver_addition_form.html")
     
-admin.add_view(DriverPage(name="Drivers", endpoint="drivers"))
-
-
-# Adding vehicle model in view
-admin.add_view(ModelView(Vehicle, db.session))
+admin.add_view(DriverForm(name="", endpoint="drivers_form"))

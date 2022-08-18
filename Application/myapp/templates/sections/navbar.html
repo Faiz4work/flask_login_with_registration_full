@@ -1,9 +1,20 @@
+<style>
+  .mynav{
+    position: sticky !important;
+    background-color: rgba(144, 238, 144, 0.3) !important; 
+    box-shadow: inset 0 -1px 4px 0px rgba(0, 0, 0, 0.5);
+  }
+</style>
+
+
+
+
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mynav" style="width: 100%; display: flex;">
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Toggle button -->
-      <button
+      <!-- <button
         class="navbar-toggler"
         type="button"
         data-mdb-toggle="collapse"
@@ -13,66 +24,17 @@
         aria-label="Toggle navigation"
       >
         <i class="fas fa-bars"></i>
-      </button>
+      </button> -->
   
       <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar" id="navbarSupportedContent">
         <!-- Navbar brand -->
         <a class="navbar-brand mt-2 mt-lg-0" href="/">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                      style="width: 50px;" alt="logo">
+          <img src="{{ url_for('static', filename='css_images/logo.png') }}"
+                      style="width: 100px;" alt="logo">
         </a>
-        <!-- Left links -->
-        <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Team</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Projects</a>
-          </li>
-        </ul> -->
-        <!-- Left links -->
+
       </div>
-      <!-- Collapsible wrapper -->
-  
-      <!-- Right elements -->
-
-
-        <!-- <div class="dropdown">
-          <a
-            class="dropdown-toggle d-flex align-items-center hidden-arrow"
-            href="#"
-            id="navbarDropdownMenuAvatar"
-            role="button"
-            data-mdb-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-              class="rounded-circle"
-              height="25"
-              alt="Black and White Portrait of a Man"
-              loading="lazy"
-            />
-          </a>
-          <ul
-            class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="navbarDropdownMenuAvatar"
-          >
-            <li>
-              <a class="dropdown-item" href="#">My profile</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Settings</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Logout</a>
-            </li>
-          </ul>
-        </div> -->
 
         <a href="{{ url_for('user.logout') }}"
         style="background-color: rgb(215, 13, 47); color: aliceblue;

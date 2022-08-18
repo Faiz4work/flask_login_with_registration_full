@@ -1,29 +1,130 @@
+body{
+    background-image: url(../static/drivers_images/Decor-trends.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+form{
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: inset -4px -4px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+}
 
 .cont {
-    width: 60%;
-    /* display: flex; */
-    margin: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
-form{
-    margin: 30px auto;
-}
-label{
-    display: block;
-    margin: 10px 0;
-}
-input{
-    border-radius: 8px;
-    height: 25px;
-}
-/* .btn{
-    display: grid;
-    margin: 0px 90px;
-    padding-bottom: 30px;
-} */
-/* .btn input{
-    width: 85px;
-    height: 31px;
-    text-align: center;
-    font-size: 16px;
-} */
 
+.cont > div{
+    display: flex;
+    flex-direction: column;
+}
+.firstform>div, .secondform>div, .thirdform>div{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+div>label{
+    color: black;
+    margin: 2px 0;
+    font-size: 16px;
+    flex-wrap: wrap;
+}
+div>input{
+    height: 25px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: inset -2px -2px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+#select{
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: inset -2px -2px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+center>input{
+    width: 200px;
+    margin: 15px 10px 10px -40px;
+    background-color: rgba(14, 208, 20, 0.4);
+    box-shadow: inset -2px -2px 3px 1px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+center>input:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+@media screen and (max-width:780px){
+    form{
+        width: 90%;
+        margin: 20px;
+        padding: 10px;
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: inset -3px -3px 3px 1px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        flex-wrap: wrap;
+    }
+
+    .cont {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .firstform>div, .secondform>div, .thirdform>div{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+
+    div>label{
+        color: black;
+        margin: 2px 0;
+        font-size: 16px;
+        flex-wrap: wrap;
+    }
+
+    div>input{
+        height: 25px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: inset -2px -2px 3px 1px rgba(0, 0, 0, 0.3);
+        border: none;
+    }
+
+    #select{
+        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: inset -2px -2px 3px 1px rgba(0, 0, 0, 0.3);
+        border: none;
+        padding: 4px;
+    }
+
+    center>input{
+        width: 200px;
+        height: 25px;
+        margin: 15px;
+        background-color: rgba(14, 208, 20, 0.4);
+        box-shadow: inset -2px -2px 3px 1px rgba(0, 0, 0, 0.3);
+        border: none;
+    }
+
+    center>input:hover{
+        background-color: rgba(0, 0, 0, 0.2);
+        color: white;
+        border-radius: 5px;
+    }
+}

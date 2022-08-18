@@ -1,8 +1,9 @@
 <center>
     <h1><u>Current Vehicle details</u></h1>
 </center>
+{% if vehicle %}
 
-<table class="table table-sm table-striped" style="width: 50%; margin: auto;">
+<table class="table table-sm " style="width: 50%; margin: auto;">
 <tbody>
     <tr>
         <td>Registration No.</td>
@@ -85,36 +86,39 @@
         <td>{{ vehicle.color }}</td>
     </tr>
     <tr>
-        <td></td>
-        <td>{{ vehicle. }}</td>
+        <td>Mobile Number</td>
+        <td>{{ vehicle.mobile_number }}</td>
     </tr>
     <tr>
-        <td></td>
-        <td>{{ vehicle. }}</td>
+        <td>Engine No.</td>
+        <td>{{ vehicle.engine_no }}</td>
     </tr>
     <tr>
-        <td></td>
-        <td>{{ vehicle. }}</td>
+        <td>Vin no</td>
+        <td>{{ vehicle.vin_no }}</td>
     </tr>
     <tr>
-        <td></td>
-        <td>{{ vehicle. }}</td>
+        <td>Tank Capacity</td>
+        <td>{{ vehicle.tank_capacity }}</td>
     </tr>
     <tr>
-        <td></td>
-        <td>{{ vehicle. }}</td>
+        <td>License Disk Expiry Date (Y-M-D)</td>
+        <td>{{ vehicle.license_disk_expiry_date }}</td>
     </tr>
     <tr>
-        <td></td>
-        <td>{{ vehicle. }}</td>
+        <td>License Disk Renewal Date (Y-M-D)</td>
+        <td>{{ vehicle.license_disk_renewal_date }}</td>
     </tr>
     <tr>
-        <td></td>
-        <td>{{ vehicle. }}</td>
+        <td>Currently Assigned to: </td>
+        <td>{{ current_user.username }}</td>
     </tr>
-    <tr>
-        <td></td>
-        <td>{{ vehicle. }}</td>
-    </tr>
+
 </tbody>
 </table>
+
+{% else %}
+
+<h1>No Vehicles to display</h1>
+
+{% endif %}

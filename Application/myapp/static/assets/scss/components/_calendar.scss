@@ -1,0 +1,79 @@
+.fc-theme-standard td, .fc-theme-standard th {
+    border: 1px solid var(--fc-border-color, $border-color);
+}
+
+.fc-theme-standard .fc-scrollgrid {
+    border: 1px solid var(--fc-border-color, $border-color);
+}
+
+.fc {
+
+    .fc-non-business {
+        background: transparent;
+    }
+
+    .fc-col-header-cell-cushion {
+        color: $gray-700
+    }
+
+    .fc-highlight {
+        background-color: $gray-200;
+    }
+
+    .fc-button {
+        padding: $btn-padding-y $btn-padding-x;
+        border-radius: $btn-border-radius;
+        text-transform: capitalize;
+        font-weight: $btn-font-weight;
+        color: $secondary;
+    }
+
+    .fc-button-primary {
+        color: $body-color;
+        background-color: transparent;
+        border: 2px solid $secondary;
+
+        &:hover,
+        &:not(:disabled).fc-button-active, 
+        &:not(:disabled):active {
+            color: $black;
+            background-color: $secondary;
+            border-color: $secondary;
+        }
+
+        &:focus, 
+        &:not(:disabled).fc-button-active:focus, 
+        &:not(:disabled):active:focus {
+            box-shadow: none;
+        }
+    }
+
+    .fc-button-group > .fc-button:not(:first-child), 
+    .fc-button-grou > .fc-button:not(:first-child) {
+        margin-left: -2px;
+    }
+}
+
+.fc-direction-ltr .fc-daygrid-event.fc-event-end, 
+.fc-direction-rtl .fc-daygrid-event.fc-event-start {
+    margin-right: 10px;
+}
+.fc-direction-ltr .fc-daygrid-event.fc-event-start, 
+.fc-direction-rtl .fc-daygrid-event.fc-event-end {
+    margin-left: 10px;
+}
+
+.fc-daygrid-event-dot {
+    border: calc(var(--fc-daygrid-event-dot-width,8px)/ 2) solid var(--fc-event-border-color,$info)
+}
+
+.fc-h-event {
+    border: 0;
+    background-color: $info;
+    padding: 2px 10px;
+}
+
+.fc-v-event {
+    border: 1px solid $info;
+    background-color: $info;
+}

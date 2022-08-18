@@ -28,5 +28,8 @@ def create_app():
     # importing admin blueprint
     from myapp.admin_bp import admin_bp
     app.register_blueprint(admin_bp)
+    
+    from myapp.expense_and_reports.routes import expense_and_reports
+    app.register_blueprint(expense_and_reports)
 
     return app

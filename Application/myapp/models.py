@@ -18,7 +18,8 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean, default=False)
     
     # Extra field for drivers
-    registration_no = db.Column(db.Integer, unique=False, nullable=True)
+    employee_no = db.Column(db.Integer, unique=False, nullable=True)
+    # change registration_no to "employee_no"
     fleet_no = db.Column(db.Integer, unique=False, nullable=True)
     milage = db.Column(db.Integer, unique=False, nullable=True)
     driver_license_image = db.Column(db.String(200), unique=False, nullable=True)
@@ -76,11 +77,28 @@ class Vehicle(db.Model):
     # Adding relationship back to driver
     driver_id = db.Column(db.Integer, db.ForeignKey("user.id"), unique=True, nullable=True)
     
+    # Adding relationship of one to one with vehicle expense table
+    vehicle = db.relationship("VehicleExpense", backref="vehicle", uselist=False)
+    
     def __repr__(self):
         return f"id: {self.id}, registration: {self.registration_no}, financer: {self.financer}"
 
 
-
+class VehicleExpense(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    fuel_value = db.Column(db.String(50))
+    oil_value = db.Column(db.String(50))
+    repair_and_maint = db.Column(db.String(50))
+    tyre_value = db.Column(db.String(50))
+    accident_value = db.Column(db.String(50))
+    other_value = db.Column(db.String(50))
+    toll_value = db.Column(db.String(50))
+    
+    # Adding relationship back to Vehicle
+    vehicle_id = db.Column(db.Integer, db.ForeignKey("vehicle.id"), unique=True, nullable=True)
+    
+    def __repr__(self):
+        return f"{self.id}"
 
 
 

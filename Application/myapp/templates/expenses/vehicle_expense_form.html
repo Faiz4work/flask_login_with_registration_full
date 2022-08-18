@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vehicle_expense.css') }}">
+{% endblock css_link %}
+
+
+{% block body %}
+
+{% include "sections/navbar.html" %}
+
+<form action="#" method="post">
+    <div class="maincount">
+
+    <div class="firstform">
+        <label for="driver">Driver</label>
+        <input type="text" id="driver" value="{{ vehicle.driver.username }}" readonly>
+
+        <label for="reg no">Reg no (vehicle):</label>
+        <input type="text" id="reg no" value="{{ vehicle.registration_no }}" readonly>
+
+        <label for="yr_mth">YR_MTH</label>
+        <input type="number" type="number and ." id="yr_mth" value="4879">
+
+        <label for="make">Make</label>
+        <input type="text" id="make" value="{{ vehicle.vehicle_manufacturer }}" readonly>
+
+        <label for="model">Model</label>
+        <input type="text" id="model" value="{{ vehicle.model }}" readonly>
+
+        <label for="fuel value">Fuel Value</label>
+        <input type="text" id="fuel value">
+        </div>
+
+        <div class="secondform">
+        <label for="oil value">Oil value</label>
+        <input type="text" id="oil value">
+
+        <label for="repair and maint">Repair and Maint</label>
+        <input type="text" id="repair and maint">
+
+        <label for="tyre value">Tyre value</label>
+        <input type="text" id="tyre value">
+
+        <label for="accident value">Accident value</label>
+        <input type="text" id="accident value">
+
+        <label for="other value">Other value</label>
+        <input type="text" id="other value">
+
+        <label for="toll value">Toll value</label>
+        <input type="text" id="toll value">
+        </div>
+    </div>
+    <center>
+        <button>Submit</button>
+    </center>
+</form>
+
+
+{% endblock body %}

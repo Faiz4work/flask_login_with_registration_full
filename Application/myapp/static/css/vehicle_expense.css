@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-image:url(../css_images/vehicle_expense_form.jpg) ;
+    /* background-color: rgb(133, 159, 93); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+form{
+    width: 80%;
+    height: 100%px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+    backdrop-filter: blur(2px);
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid grey;
+    box-shadow: inset -5px -5px 4px 1px  rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    flex-wrap: wrap;
+    
+}
+.maincount{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+    margin: 20px 0;
+    width: 90%;
+    flex-wrap: wrap;
+    flex-grow: unset;
+}
+
+.firstform, .secondform{
+    display: flex;
+    flex-direction: column; 
+    flex-grow: unset;
+}
+
+.firstform>label, .secondform>label{
+    margin-top: 25px;
+    font-size: 18px;
+    color: black;
+}
+
+.firstform>input, .secondform>input{
+    margin-top: 5px;
+    height: 28px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: inset -2px -2px 4px 1px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px grey;
+    font-size: 15px;
+}
+
+button{
+    margin: 20px 0;
+    margin-bottom: 40px;
+    width: 200px;
+    height: 28px;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid grey;
+    backdrop-filter: blur(5px);
+    box-shadow: inset -2px -2px 4px 1px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    color: #741a1a;
+}
+
+button:hover{
+    background-color: white;
+    color: black;
+}
+
+@media screen and (max-width:700px){
+
+    form{
+        width: 70%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 30px 0;
+        backdrop-filter: blur(2px);
+        background-color: rgba(255, 255, 255, 0.3);
+        border: 1px solid grey;
+        box-shadow: inset -4px -4px 5px 1px  rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
+        flex-wrap: wrap;
+    
+    }
+
+    .maincount{
+        width: 75%;
+        display: flex;
+        flex-direction: column; 
+        margin: 40px 40px 40px 40px;
+        flex-wrap: wrap;
+    } 
+
+    .firstform, .secondform{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .firstform>label, .secondform>label{
+        margin-top: 25px;
+        font-size: 19px;
+        color: black;
+    }
+
+    .firstform>input, .secondform>input{
+        margin-top: 5px;
+        height: 30px;
+        width: 95%;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.6);
+        box-shadow: inset -2px -2px 4px 1px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgb(216, 210, 210);
+        font-size: 15px;
+        padding-bottom:4px ;
+    }
+
+    button{
+        width: 170px;
+        height: 30px;
+        margin: 0px 20px 40px 10px ;
+        font-size: 18px;
+        font-style: inherit;
+        text-transform: uppercase;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid grey;
+        backdrop-filter: blur(4px);
+        box-shadow: inset -2px -2px 4px 1px rgba(0, 0, 0, 0.5);
+        color: black;
+    }
+
+}

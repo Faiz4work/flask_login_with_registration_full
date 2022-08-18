@@ -1,0 +1,23 @@
+.has-error {
+
+    .form-check-input {
+        border-color: $danger;
+    }
+
+    .form-check {
+        .form-check-label {
+            color: $danger;
+        }
+    }
+
+    .suffix-icon {
+        display: none;
+    }
+}
+
+.has-success {
+
+    .suffix-icon {
+        display: none;
+    }
+}
