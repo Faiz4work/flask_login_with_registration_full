@@ -15,9 +15,9 @@ export default class Core {
 
 	setLogo() {
 		if($(sideNav).hasClass(navMenuCollapse) && !$(sideNav).hasClass(navMenuQuickExpand)) {
-			$(`${sideNav} .logo img`).attr('src', `/assets/images/logo/${$(sideNav).hasClass('nav-menu-dark') ? 'logo-fold-white' : 'logo-fold'}.png`);
+			$(`${sideNav} .logo img`).attr('src', `/static/assets/images/logo/logo.png`);
 		} else {
-			$(`${sideNav} .logo img`).attr('src', `/assets/images/logo/${$(sideNav).hasClass('nav-menu-dark') ? 'logo-white' : 'logo'}.png`);
+			$(`${sideNav} .logo img`).attr('src', `/static/assets/images/logo/logo.png`);
 		}
 	}
 

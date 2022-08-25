@@ -42,7 +42,8 @@ def login():
 @login_required
 def dashboard():
     vehicle = Vehicle.query.filter_by(driver_id=current_user.id).first()
-    return render_template("dashboard2.html", vehicle=vehicle)
+    return render_template("dashboard2.html", vehicle=vehicle, 
+                           dashboard="router-link-active")
 
 @user.route("/logout")
 def logout():

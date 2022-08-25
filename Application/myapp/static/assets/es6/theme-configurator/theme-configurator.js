@@ -35,11 +35,11 @@ function themeConfigurator() {
         if(e.target.checked) {
             $('.header-navbar').addClass('nav-menu-dark');
             $('.header-navbar').removeClass('nav-menu-light');
-            $('.side-nav .logo img').attr("src", "/assets/images/logo/logo-white.png");
+            $('.side-nav .logo img').attr("src", "/static/assets/images/logo/logo-white.png");
         } else {
             $('.header-navbar').addClass('nav-menu-light');
             $('.header-navbar').removeClass('nav-menu-dark');
-            $('.side-nav .logo img').attr("src", "/assets/images/logo/logo.png");
+            $('.side-nav .logo img').attr("src", "/.png");
         }
         e.preventDefault();
     });
@@ -49,9 +49,9 @@ function themeConfigurator() {
         $('.header-nav').toggleClass('is-collapse');
         $('.content').toggleClass('is-collapse')
         if($('.side-nav').hasClass('nav-menu-collapse')) {
-            $('.side-nav .logo img').attr('src', `/assets/images/logo/${$('.side-nav').hasClass('nav-menu-dark') ? 'logo-fold-white' : 'logo-fold'}.png`);
+            $('.side-nav .logo img').attr('src', `static/assets/images/logo/${$('.side-nav').hasClass('nav-menu-dark') ? 'logo-fold-white' : 'logo-fold'}.png`);
         } else {
-            $('.side-nav .logo img').attr('src', `/assets/images/logo/${$('.side-nav').hasClass('nav-menu-dark') ? 'logo-white' : 'logo'}.png`);
+            $('.side-nav .logo img').attr('src', `static/assets/images/logo/${$('.side-nav').hasClass('nav-menu-dark') ? 'logo-white' : 'logo'}.png`);
         }
         e.preventDefault();
     });

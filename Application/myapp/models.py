@@ -38,6 +38,9 @@ class User(db.Model, UserMixin):
     vehicle = db.relationship("Vehicle", backref="driver", uselist=False)
     
     
+    # Adding relationship of one to one with fleetcard
+    fleet_card = db.relationship("FleetCard", backref="fleet_card_driver", uselist=False)    
+    
     
     def __repr__(self):
         return f"{self.username}, {self.email}, is_admin: {self.is_admin}"
@@ -101,7 +104,26 @@ class VehicleExpense(db.Model):
         return f"{self.id}"
 
 
-
+# Fleet card order form table for storing
+# data of drivers request
+class FleetCard(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    registration_no = db.Column(db.String(50))
+    driver = db.Column(db.String(60))
+    take_on_odo = db.Column(db.String(100))
+    vehicle_manufacturer = db.Column(db.String(100))
+    date_of_first_registration = db.Column(db.Date, default=datetime.now().date)
+    model = db.Column(db.String(50))
+    color = db.Column(db.String(50))
+    mobile_number = db.Column(db.String(20))
+    engine_no = db.Column(db.String(50))
+    vin_no = db.Column(db.String(50))
+    tank_capacity = db.Column(db.String(50))
+    employee_no = db.Column(db.String(50))
+    
+    
+    # Adding relationship back to driver
+    driver_id = db.Column(db.Integer, db.ForeignKey("user.id"), unique=True, nullable=True)
 
 
 

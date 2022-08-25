@@ -15,4 +15,4 @@ def vehicle_expense():
 @expense_and_reports.route("/fleet_card_form")
 @login_required
 def fleet_card_form():
-    return render_template("expenses/fleet_card_form.html")
+    return render_template("expenses/fleet_card_form.html", fleet_card="router-link-active")
