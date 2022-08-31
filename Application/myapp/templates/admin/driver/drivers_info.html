@@ -1,0 +1,72 @@
+{% extends "admin/admin_layout.html" %} {% block body %}
+
+<style>
+  .count1 {
+    display: flex;
+    justify-content: space-between;
+  }
+  .count1>a{
+    box-shadow: 1px 0px 5px #00174c;
+    border-radius: 5px;
+    padding: 8px;
+    color: #00174c;
+  }
+
+  .driver_id_image{
+    width: 50px;
+    height: 50px;
+  }
+</style>
+
+<div class="main">
+  <div class="card">
+    <div class="card-body">
+      <div class="count1">
+        <h2>drivers page</h2>
+        <a href="{{ url_for('Admin_DriverVehicle.add_driver') }}">Add a Driver</a>
+      </div>
+
+      <div class="drtable">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Drivers Names</th>
+              <th>Email</th>
+              <th>Joining Date (Y-M-D)</th>
+              <th>Driver id</th>
+              <th>Cell no</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for driver in drivers %}
+            <tr>
+              <td>{{ driver.username }}</td>
+              <td>{{ driver.email }}</td>
+              <td>{{ driver.joining_date.strftime("%Y-%m-%d") }}</td>
+
+              <td>
+                <a href="../../{{ driver.id_no_image }}" target="_blank">
+                  <img class="driver_id_image"
+                    src="../../{{ driver.id_no_image }}"
+                    alt="driver id image"
+                    id="driver_id"
+                /></a>
+              </td>
+
+              <td>{{ driver.cell_no }}</td>
+
+              <td>
+                <a href="#" class="btn btn-info">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,87 @@
+{% extends "admin/admin_layout.html" %} {% block body %}
+
+<div class="main">
+  <div class="card">
+    <div class="card-body">
+      <h4>Driver Addition form</h4>
+      <form
+        action="{{ url_for('Admin_DriverVehicle.add_driver') }}"
+        method="post"
+        class="row g-3 needs-validation"
+        enctype="multipart/form-data"
+      >
+        <div class="col-md-4">
+          <label for="Email Adress" class="form-label">Email Adress</label>
+          <input type="email" class="form-control" id="Email Adress"
+            name="email"/>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password"/>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="Full Names" class="form-label">Full Names and Surname</label>
+            <input type="text"class="form-control"id="Full Names" name="full name"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="Registration" class="form-label">Employee no:</label>
+          <input type="number" class="form-control" id="Registration" name="employee"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="Fleet no:" class="form-label">Fleet no:</label>
+          <input type="number" class="form-control" id="Fleet no:" name="fleet"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="Milage" class="form-label">Milage:</label>
+          <input type="number" class="form-control" id="Milage" name="milage"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="ID NO" class="form-label">ID NO (Attach Copy) (image)</label>
+          <input type="file" class="form-control" id="ID NO" accept="image/*" name="image"/>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="Drivers License" class="form-label">Drivers License No(number)</label>
+          <input type="text" class="form-control" id="Drivers License" name="driver_license" />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="Drivers License Endorsed" class="form-label">Drivers License Endorsed Yes/NO</label>
+          <input type="text" class="form-control" id="Drivers License Endorsed" name="license_endorsed" />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="Drivers License Renewal Date" class="form-label">Drivers License Renewal Date</label>
+          <input type="date" class="form-control" id="Drivers License Renewal Date" name="renewal_date" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="Cell No" class="form-label">Cell No:</label>
+          <input type="number" class="form-control" id="Cell No" name="cell_no" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="Family Member" class="form-label">Family Member</label>
+          <input type="text" class="form-control" id="Family Member" name="family_member" />
+        </div>
+
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
