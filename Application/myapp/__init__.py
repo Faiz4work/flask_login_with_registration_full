@@ -25,11 +25,12 @@ def create_app():
     from myapp.user.routes import user
     app.register_blueprint(user)
     
+    from myapp.driver.routes import Admin_DriverVehicle
+    app.register_blueprint(Admin_DriverVehicle)
+    
     # importing admin blueprint
     from myapp.admin_bp import admin_bp
     app.register_blueprint(admin_bp)
-    
-    from myapp.expense_and_reports.routes import expense_and_reports
-    app.register_blueprint(expense_and_reports)
+
 
     return app

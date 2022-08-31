@@ -1,7 +1,5 @@
-from lib2to3.pgen2 import driver
 from flask import (Blueprint, request, render_template, redirect,
                     url_for, flash)
-import flask
 from myapp.models import User, Vehicle
 from myapp import db
 from flask_login import (login_user, logout_user, 
@@ -41,8 +39,10 @@ def login():
 @user.route("/dashboard")
 @login_required
 def dashboard():
+    if current_user.is_admin:
+        return redirect(url_for("admin.index"))
     vehicle = Vehicle.query.filter_by(driver_id=current_user.id).first()
-    return render_template("dashboard2.html", vehicle=vehicle, 
+    return render_template("dashboard.html", vehicle=vehicle, 
                            dashboard="router-link-active")
 
 @user.route("/logout")

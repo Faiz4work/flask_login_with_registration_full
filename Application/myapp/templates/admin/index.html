@@ -1,8 +1,17 @@
 {% if current_user.is_authenticated %}
-{% extends "admin/master.html" %}
+{% extends "admin/admin_layout.html" %}
 
 {% block body %}
-<h1>Welcome {{ current_user.username }}</h1>
+    {% include "admin/expenses_table.html" %}
+    
+    <script>
+        var cur_url = window.location.href.split("/");
+        if(cur_url.at(-2) == "admin"){
+            var dash = document.querySelector(".dash");
+            dash.classList.add("router-link-active")
+        }
+    </script>
+
 {% endblock body %}
 
 
