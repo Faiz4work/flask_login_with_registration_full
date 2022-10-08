@@ -3,12 +3,13 @@ from myapp import admin
 from myapp.models import User, Vehicle
 from flask_admin.contrib.sqla import ModelView
 from myapp import db
-from flask_admin import BaseView, expose, AdminIndexView
+from flask_admin import BaseView, expose
 from flask_login import current_user
 from flask_admin.menu import MenuLink
 from flask import request, flash, redirect, url_for
 from datetime import datetime
 import os
+
 
 
 class UserView(ModelView):

@@ -303,36 +303,36 @@
           </a>
         </li>
         <li class="nav-group-title">Expenses Forms</li>
-        <li class="nav-menu-item {{fleet_card}}">
 
-          <a href="/">
+        <li class="nav-menu-item {{fleet_card_class}}">
+          <a href="{{ url_for('driver_forms.fleet_card_form') }}">
             <i class="feather icon-mail"></i>
             <span class="nav-menu-item-title">Fleet card order form</span>
           </a>
         </li>
-        <li class="nav-menu-item">
-          <a href="/">
+        <li class="nav-menu-item {{ maintanance_card_class }}">
+          <a href="{{url_for('driver_forms.maintenance_card_form')}}">
             <i class="feather icon-message-circle"></i>
             <span class="nav-menu-item-title">Maintenance and tyres</span>
           </a>
         </li>
-        <li class="nav-menu-item">
-          <a href="/">
+        <li class="nav-menu-item {{ fleet_incident_card_class }}">
+          <a href="{{url_for('driver_forms.fleet_incident_reporting_form')}}">
             <i class="feather icon-calendar"></i>
             <span class="nav-menu-item-title">Fleet incident reporting</span>
           </a>
         </li>
 
-        <li class="nav-menu-item">
-          <a href="/">
+        <li class="nav-menu-item {{ nc_card_class }}">
+          <a href="{{url_for('driver_forms.fleet_N_incident_reporting_form')}}">
             <i class="feather icon-calendar"></i>
             <span class="nav-menu-item-title">
               N.C incident reporting</span>
           </a>
         </li>
 
-        <li class="nav-menu-item">
-          <a href="/">
+        <li class="nav-menu-item {{ reporting_card_class }}" >
+          <a href="{{url_for('driver_forms.fleet_inspection_reporting_form')}}">
             <i class="feather icon-calendar"></i>
             <span class="nav-menu-item-title">
              Fleet inspection driver</span>

@@ -21,20 +21,22 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>Hedley wesel</td>
-                <td>CVZ448NC</td>
-                <td>202012</td>
-                <td>Toyota</td>
-                <td>HILUX 2.4GD-6 SRX XC</td>
-                <td>8,040.10</td>
-                <td>Null</td>
-                <td>Null</td>
-                <td>Null</td>
-                <td>Null</td>
-                <td>Null</td>
-                <td>R82.30</td>
-            </tr>
+          {% for user in users %}
+          <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.employee_no }}</td>
+            <td>202012</td>
+            <td>{{ user.vehicle.vehicle_manufacturer }}</td>
+            <td>{{ user.vehicle.model }}</td>
+            <td>N</td>
+            <td>Null</td>
+            <td>Null</td>
+            <td>Null</td>
+            <td>Null</td>
+            <td>Null</td>
+            <td>R82.30</td>
+          </tr>
+          {% endfor %}
         </tbody>
 
 

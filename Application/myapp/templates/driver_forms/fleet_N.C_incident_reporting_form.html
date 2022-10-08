@@ -1,0 +1,213 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+   
+<div class="main">
+    <div class="card">
+      <div class="card-body">
+        <h3>Non-Compliance Incident/Accident</h3>
+        <form
+          action="{{ url_for('driver_forms.fleet_N_incident_reporting_form') }}"
+          method="post"
+          class="row g-3 needs-validation"
+          enctype="multipart/form-data"
+        >
+
+        <div class="col-md-12">
+          <h5>Details of Flowcentric Vehicle:</h5>
+        </div>
+
+          <div class="col-md-4">
+            <label for="" class="form-label">Registration Number: </label>
+            <input type="number" class="form-control" id="registration_no"
+              name="registration_no"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="vin" class="form-label">VIN NO:</label>
+            <input type="number" class="form-control" id="vin" name="vin"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="make" class="form-label">Make & MODEL</label>
+            <input type="text"class="form-control"id="make" name="make"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="year" class="form-label">YEAR MODEL</label>
+            <input type="text" class="form-control" id="year" name="vehicle_manufacturer"/>
+          </div>
+
+          <div class="col-md-12">
+            <h5 style="text-decoration:underline ;">FULL NAMES AND SURNAME OF DRIVER RESPONSIBLE FOR DAMAGE</h5>
+          </div>
+  
+          <div class="col-md-12">
+            <h5>ID Number</h5>
+          </div>
+  
+          <div class="col-md-12">
+            <h5>Driver's License</h5>
+          </div>
+
+          <div class="col-md-4">
+            <label for="license" class="form-label">NO:</label>
+            <input type="number" class="form-control" id="license" name="License"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Date Issued" class="form-label">Date Issued:</label>
+            <input type="date" class="form-control" id="Date Issued" name="date_issued"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Code" class="form-label">Code:</label>
+            <input type="text" class="form-control" id="Code" name="code"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="endorsed" class="form-label">Endorsed</label>
+            <select id="endorsed" class="form-control" name="endorsed">
+                <option value="Yes" selected>Yes</option>
+                <option value="No">No</option>
+            </select>
+          </div>
+
+
+          <div class="col-md-12">
+            <h5 style="text-decoration:underline ;">FULL NAMES AND SURNAME OF DRIVER/PERSON REPORTING DAMAGE:</h5>
+          </div>
+  
+          <div class="col-md-12">
+            <h5>ID Number</h5>
+          </div>
+  
+          <div class="col-md-12">
+            <h5>Driver's License</h5>
+          </div>
+
+          <div class="col-md-4">
+            <label for="license_2" class="form-label">NO:</label>
+            <input type="number" class="form-control" id="license_2" name="License_2"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Date Issued_2" class="form-label">Date Issued:</label>
+            <input type="date" class="form-control" id="Date Issued_2" name="date_issued_2"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Code_2" class="form-label">Code: B</label>
+            <input type="text" class="form-control" id="Code_2" name="Code_2"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="endorsed_2" class="form-label">Endorsed</label>
+            <select id="endorsed_2" class="form-control" name="endorsed_2">
+                <option value="Yes" selected>Yes</option>
+                <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-12">
+            <h4 style="text-decoration:underline;">WHEN WAS THE DAMAGE DISCOVERED?</h4>
+          </div>
+
+          <div class="col-md-12">
+            <h5>AMOUNT OF DAMAGE</h5>
+            <div class="col-md-12">
+              <textarea class="form-control" id="Details" cols="20" rows="1" name="demage"></textarea>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <h4 style="text-decoration:underline;">DETAILS OF DAMAGE:</h4>
+            <div class="col-md-12">
+              <textarea class="form-control" id="Details_2" cols="20" rows="1" name="demage_2"></textarea>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <h4 style="text-decoration:underline;">DAMAGE RECOVERY SUGGESTION:</h4>
+          </div>
+
+          <div class="col-md-12">
+            <h5>Damage Recovery Approved</h5>
+          </div>
+
+          <div class="col-md-12">
+            <h3 style="text-decoration:underline; margin-top: 20px;">Reporting:</h3>
+          </div>
+
+          <div class="col-md-12">
+            <h5>Was the Accident/Incident to the responsible Line Manager?</h5>
+          </div>
+
+          <div class="col-md-4">
+            <label for="yes/no" class="form-label">YES/NO</label>
+            <select id="yes/no" class="form-control" name="yes_no">
+                <option value="EMAIL" selected>----</option>
+                <option value="EMAIL">EMAIL</option>
+                <option value="TELEPHONE">TELEPHONE</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="manager" class="form-label">Manager:</label>
+            <input type="text" class="form-control" id="manager" name="manager"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="date" class="form-label">Date:</label>
+            <input type="date" class="form-control" id="date" name="date"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="time" class="form-label">Time:</label>
+            <input type="time" class="form-control" id="time" name="time"/>
+          </div>
+  
+          <div class="col-md-12">
+            <h5>Was the Accident/Incident to the responsible Fleet Manager?</h5>
+          </div>
+
+          <div class="col-md-4">
+            <label for="yes/no_2" class="form-label">YES/NO</label>
+            <select id="yes/no_2" class="form-control" name="yes_no_2">
+                <option value="EMAIL" selected>----</option>
+                <option value="EMAIL">EMAIL</option>
+                <option value="TELEPHONE">TELEPHONE</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="manager_2" class="form-label">Manager:</label>
+            <input type="text" class="form-control" id="manager_2" name="manager_2"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="date_2" class="form-label">Date:</label>
+            <input type="date" class="form-control" id="date_2" name="date_2"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="time_2" class="form-label">Time:</label>
+            <input type="time" class="form-control" id="time_2" name="time_2"/>
+          </div>
+
+          
+          <div class="col-md-12" style="margin-top:30px;">
+            <p>Karlilen Janse van Vuuren
+              Fleet Manager</p>
+              <h3>Date:</h3>
+          </div>
+
+       
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

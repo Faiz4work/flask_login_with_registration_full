@@ -1,0 +1,348 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="main">
+  <div class="card">
+    <div class="card-body">
+      <h3>Fleet Inspection/Driver Ahmend</h3>
+      <form action="{{ url_for('driver_forms.fleet_inspection_reporting_form') }}" method="post" class="row g-3 needs-validation"
+        enctype="multipart/form-data">
+        <div class="col-md-4">
+          <p>Inspection/Driver Amend</p>
+          <p>Inspection done by: Karlien J v Vuuren</p>
+        </div>
+
+        <div class="col-md-4">
+          <label for="date" class="form-label">Date:</label>
+          <input type="date" name="date_1" class="form-control" id="date" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="time" class="form-label">Time:</label>
+          <input type="time" name="time_1" class="form-control" id="time" />
+        </div>
+
+        <div class="col-md-12">
+          <h5>Details of Flowcentric Vehicle:</h5>
+        </div>
+
+        <div class="col-md-4">
+          <label for="registration" class="form-label">Registration no:</label>
+          <input type="number" name="registration_1" class="form-control" id="registration" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="fleet" class="form-label">Fleet no:</label>
+          <input type="number" name="fleet" class="form-control" id="fleet" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="milage" class="form-label">Milage:</label>
+          <input type="number" name="milage_1" class="form-control" id="milage" />
+        </div>
+
+        <div class="col-md-12">
+          <label for="name" class="form-label">Full Names and Surname of Current Driver:</label>
+          <input class="form-control" name="name" type="text" id="name">
+        </div>
+
+        <div class="col-md-12">
+          <label for="contact" class="form-label">Contact Details:</label>
+          <input class="form-control" name="contact" type="text" id="contact">
+        </div>
+
+        <div class="col-md-6">
+          <label for="file" class="form-label">Full Names and Surname of New Driver:</label>
+          <input type="text" name="f_name" class="form-control" id="file" />
+        </div>
+
+        <div class="col-md-12">
+          <label for="contact_2" class="form-label">Contact Details:</label>
+          <input type="text" name="contact_2" class="form-control" id="contact_2">
+        </div>
+
+        <div class="col-md-12">
+          <label for="yes/no" class="form-label">Is the Driver's License Valid? YES/NO, if No does the driver have a
+            temporary License?</label>
+        </div>
+        <div class="col-md-5">
+          <select class="form-control" name="yes" id="yes/no">
+            <option value="" selected>----</option>
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
+        </div>
+
+        <div class="col-md-12">
+          <label for="yes/no_1" class="form-label">Has the Driver's License been Endorsed? YES/NO, if YES specify
+            why?</label>
+        </div>
+        <div class="col-md-5">
+          <select class="form-control" name="yes_2" id="yes/no_1">
+            <option value="" selected>----</option>
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
+        </div>
+
+
+        <div class="col-md-12">
+          <label for="yes/no_2" class="form-label">Is the License Disk Valid and fitted to the Windscreen?</label>
+        </div>
+        <div class="col-md-5">
+          <select class="form-control" name="yes_3" id="yes/no_2">
+            <option value="" selected>----</option>
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
+        </div>
+
+        <div class="col-md-12">
+          <label for="yes/no_3" class="form-label">Is the branding or fleet stickers damaged?</label>
+        </div>
+        <div class="col-md-5">
+          <select class="form-control" name="yes_4" id="yes/no_3">
+            <option value="" selected>----</option>
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
+        </div>
+
+        <div class="col-md-12">
+          <label for="yes/no_4" class="form-label">Is there any damage, dents, or scratches on the vehicle?</label>
+        </div>
+        <div class="col-md-5">
+          <select class="form-control" name="yes_5" id="yes/no_4">
+            <option value="" selected>----</option>
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
+        </div>
+
+        <div class="col-md-12">
+          <label for="yes/no_5" class="form-label">Was damage, dents, or scratches reported on previous
+            occasion?</label>
+        </div>
+        <div class="col-md-5">
+          <select class="form-control" name="yes_6" id="yes/no_5">
+            <option value="" selected>----</option>
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+          </select>
+        </div>
+
+        <div class="col-md-12">
+          <label for="details_of_demage" class="form-label">Details of Damage, dents, or scratches (Please take photo's
+            and send with Inspection list):</label>
+          <textarea class="form-control" name="text_1" id="details_of_demage" cols="20" rows="1"></textarea>
+        </div>
+
+
+        <div class="col-md-12">
+          <h4 style="margin-top:20px;">INSPECTION LIST</h4>
+        </div>
+
+        <div class="col-md-12" id="texta">
+          <h5>TYRES</h5>
+          <textarea class="form-control" name="text_2" id="texta" cols="20" rows="1"></textarea>
+        </div>
+
+        <!-- # ghayas  -->
+
+        <div class="col-md-6">
+          <label for="current_milage" class="form-label">Current Milage done with set of tyre’s?</label>
+          <input type="text" name="current_milage" class="form-control" id="current_milage">
+        </div>
+
+        <div class="col-md-6">
+          <label for="Average" class="form-label">Average pressure?</label>
+          <input type="text" name="average" class="form-control" id="Average">
+        </div>
+
+        <div class="col-md-6">
+          <label for="order" class="form-label">Order new tyres, how many?</label>
+          <input type="text" name="order" class="form-control" id="order">
+        </div>
+
+        <div class="col-md-6">
+          <label for="Wheel" class="form-label">Spare Wheel</label>
+          <input type="text" name="wheel" class="form-control" id="Wheel">
+        </div>
+
+
+        <div class="col-md-12">
+          <h5>SERVICE BOOK</h5>
+        </div>
+
+
+        <div class="col-md-6">
+          <label for="last_service_date" class="form-label">Date of Last Service:</label>
+          <input type="date" name="last_service_date" class="form-control" id="last_service_date">
+        </div>
+
+        <div class="col-md-6">
+          <label for="k_m" class="form-label">kM:</label>
+          <input type="text" name="km" class="form-control" id="k_m">
+        </div>
+
+        <div class="col-md-6">
+          <label for="intervals" class="form-label">Service Intervals:</label>
+          <input type="text" name="intervals" class="form-control" id="intervals">
+        </div>
+
+        <div class="col-md-6">
+          <label for="next_service" class="form-label">Next Service: </label>
+          <input type="text" name="next_service" class="form-control" id="next_service">
+        </div>
+
+
+        <div class="col-md-12">
+          <label for="vehicle_2" class="form-label">INTERIOR OF VEHICLE: </label>
+          <textarea class="form-control" name="vehicle_2" id="vehicle_2" cols="20" rows="1"></textarea>
+        </div>
+
+        <div class="col-md-12">
+          <label for="tools" class="form-label">TOOLBOX</label>
+          <textarea  class="form-control" name="tools" id="tools" cols="20" rows="1"></textarea>
+        </div>
+
+        <div class="col-md-12">
+          <label for="defaults" class="form-label">MECHANICAL DEFAULTS:</label>
+          <textarea  class="form-control" name="defaults" id="defaults" cols="20" rows="1"></textarea>
+        </div>
+        
+
+        <table class="table table-bordered" style="border:1px solid black ;">
+          <thead style="text-align: center;">
+            <tr>
+              <th scope="col-md-4">ITEMS TO BE CHECKED</th>
+              <th scope="col-md-1">GO</th>
+              <th scope="col-md-1">NO GO</th>
+              <th scope="col-md-3">ACTION REPORT</th>
+              <th scope="col-md-3">COMPLETION DATE</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr><th>BRAKES</th><td></td><td></td><td></td><td></td></tr>
+
+            <tr><th>FRONT LIGHTS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>TAIL LIGHTS</th><td></td><td></td><td></td></tr>
+            
+            <tr><th>INDICTORS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>FIRE EXTINGUISHERTAIL </th><td></td><td></td><td></td></tr>
+
+            <tr><th>OIL LEVELS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>FUEL LEAKS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>OIL LEAKS	</th><td></td><td></td><td></td></tr>
+
+            <tr><th>WATER LEAKS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>SEAT BELTS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>WHEEL NUTS & STUDS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>WIPERS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>HOOTER</th><td></td><td></td><td></td></tr>
+
+            <tr><th>STOP BLOCKS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>ROTATIONG/STROBE LIGHT</th><td></td><td></td><td></td></tr>
+
+            <tr><th>BUGGY WHIP</th><td></td><td></td><td></td></tr>
+
+            <tr><th>MIRRORS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>GUAGES</th><td></td><td></td><td></td></tr>
+
+            <tr><th>REVERSE HOOTER/LIGHT</th><td></td><td></td><td></td></tr>
+
+            <tr><th>TOW HITCH</th><td></td><td></td><td></td></tr>
+
+            <tr><th>FIRST AID KIT</th><td></td><td></td><td></td></tr>
+
+            <tr><th>DOORS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>WINDOWS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>TRIANGLES</th><td></td><td></td><td></td></tr>
+
+            <tr><th>JACK & TOOLS</th><td></td><td></td><td></td></tr>
+
+            <tr><th>POWER STEARING FLUID</th><td></td><td></td><td></td></tr>
+
+
+          
+          </tbody>
+        </table>
+
+        <div class="col-md-12">
+          <h5>SIGNATURE</h5>
+        </div>
+
+        <div class="col-md-4">
+          <label for="Current" class="form-label">CURRENT DRIVER: </label>
+          <input type="text" name="current_driver" class="form-control" id="Current">
+        </div>
+
+        <div class="col-md-4">
+          <label for="current_sign_date" class="form-label">Date:</label>
+          <input type="date" name="current_sign_date" class="form-control" id="current_sign_date">
+        </div>
+
+        <div class="col-md-4">
+          <label for="current_time" class="form-label">Time:</label>
+          <input type="time" name="current_sign_time" class="form-control" id="current_time">
+        </div>
+
+        <div class="col-md-12">
+          <h5>SIGNATURE</h5>
+        </div>
+
+        <div class="col-md-4">
+          <label for="new_driver" class="form-label">NEW DRIVER: </label>
+          <input type="text" name="new_driver" class="form-control" id="new_driver">
+        </div>
+
+        <div class="col-md-4">
+          <label for="date_2" class="form-label">Date:</label>
+          <input type="date" name="date_2" class="form-control" id="date_2">
+        </div>
+
+        <div class="col-md-4">
+          <label for="time_2" class="form-label">Time: </label>
+          <input type="time" name="time_2" class="form-control" id="time_2">
+        </div>
+
+
+        <div class="col-md-6">
+          <label for="person" class="form-label">PERSON DOING THE INSPECTION: </label>
+          <input type="text" name="person" class="form-control" id="person">
+        </div>
+
+        <div class="col-md-3">
+          <label for="date_3" class="form-label">Date:</label>
+          <input type="date" name="date_3" class="form-control" id="date_3">
+        </div>
+
+        <div class="col-md-3">
+          <label for="time_3" class="form-label">Time:</label>
+          <input type="time" name="time_3" class="form-control" id="time_3">
+        </div>
+
+  
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock body %}

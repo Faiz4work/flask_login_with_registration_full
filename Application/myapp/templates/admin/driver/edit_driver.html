@@ -3,9 +3,9 @@
 <div class="main">
   <div class="card">
     <div class="card-body">
-      <h4>Driver Addition form</h4>
+      <h4>Driver Modification form</h4>
       <form
-        action="{{ url_for('Admin_DriverVehicle.add_driver') }}"
+        action="{{ url_for('Admin_DriverVehicle.edit_driver', driver_id=driver.id) }}"
         method="post"
         class="row g-3 needs-validation"
         enctype="multipart/form-data"
@@ -13,77 +13,89 @@
         <div class="col-md-4">
           <label for="Email Adress" class="form-label">Email Adress</label>
           <input type="email" class="form-control" id="Email Adress"
-            name="email"/>
+            name="email" value="{{driver.email}}" />
           <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="col-md-4">
-          <label for="password" class="form-label">Password</label>
+          <label for="password" class="form-label">Password (keep empty for remaining same)</label>
           <input type="password" class="form-control" id="password" name="password"/>
           <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="col-md-4">
           <label for="Full Names" class="form-label">Full Name and Surname</label>
-            <input type="text"class="form-control"id="Full Names" name="full name"/>
+            <input type="text"class="form-control"id="Full Names" name="full name"
+            value="{{ driver.username }}" />
         </div>
 
         <div class="col-md-4">
           <label for="Registration" class="form-label">Employee no:</label>
-          <input type="number" class="form-control" id="Registration" name="employee"/>
+          <input type="number" class="form-control" id="Registration" name="employee"
+          value="{{ driver.employee_no }}"/>
         </div>
 
         <div class="col-md-4">
           <label for="Fleet no:" class="form-label">Fleet no:</label>
-          <input type="number" class="form-control" id="Fleet no:" name="fleet"/>
+          <input type="number" class="form-control" id="Fleet no:" name="fleet"
+          value="{{ driver.fleet_no }}"/>
         </div>
 
         <div class="col-md-4">
           <label for="Milage" class="form-label">Milage:</label>
-          <input type="number" class="form-control" id="Milage" name="milage"/>
+          <input type="number" class="form-control" id="Milage" name="milage"
+          value="{{ driver.milage }}"/>
         </div>
 
         <div class="col-md-4">
-          <label for="driver_license_image" class="form-label">Driver License image</label>
-          <input type="file" class="form-control" id="driver_license_image" accept="image/*" name="driver_license_image"/>
+          <label for="driver_license_image" class="form-label">
+            Driver License image (keep empty for remaining same) </label>
+          <input type="file" class="form-control" id="driver_license_image" 
+                accept="image/*" name="driver_license_image"/>
           <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="col-md-4">
-          <label for="driver_id_image" class="form-label">Driver ID image</label>
+          <label for="driver_id_image" class="form-label">
+            Driver ID image (keep empty for remaining same) </label>
           <input type="file" class="form-control" id="driver_id_image" accept="image/*" name="driver_id_image"/>
           <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="col-md-4">
           <label for="Drivers License" class="form-label">Drivers License No(number)</label>
-          <input type="text" class="form-control" id="Drivers License" name="driver_license_no" />
+          <input type="text" class="form-control" id="Drivers License" 
+                name="driver_license_no" value="{{ driver.drivers_license_no }}" />
           <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="col-md-4">
           <label for="Drivers License Endorsed" class="form-label">Drivers License Endorsed Yes/NO</label>
-          <input type="text" class="form-control" id="Drivers License Endorsed" name="license_endorsed" />
+          <input type="text" class="form-control" id="Drivers License Endorsed"
+                 name="license_endorsed" value="{{ driver.drivers_license_endorced }}" />
           <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="col-md-4">
           <label for="Drivers License Renewal Date" class="form-label">Drivers License Renewal Date</label>
-          <input type="date" class="form-control" id="Drivers License Renewal Date" name="renewal_date" />
+          <input type="date" class="form-control" id="Drivers License Renewal Date" name="renewal_date" 
+                value="{{ driver.drivers_license_renewal_date }}"/>
         </div>
 
         <div class="col-md-4">
           <label for="Cell No" class="form-label">Cell No:</label>
-          <input type="number" class="form-control" id="Cell No" name="cell_no" />
+          <input type="number" class="form-control" id="Cell No" name="cell_no" 
+            value="{{ driver.cell_no }}"/>
         </div>
 
         <div class="col-md-12">
           <label for="Family Member" class="form-label">Family Members</label>
-          <input type="text" class="form-control" id="Family Member" name="family_member" />
+          <input type="text" class="form-control" id="Family Member" name="family_member"
+          value="{{ driver.family_members }}" />
         </div>
 
         <div class="col-12">
-          <button class="btn btn-primary" type="submit">Submit form</button>
+          <button class="btn btn-primary" type="submit">Edit Driver</button>
         </div>
       </form>
     </div>

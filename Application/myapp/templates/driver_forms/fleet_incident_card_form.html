@@ -1,0 +1,369 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+   
+<div class="main">
+    <div class="card">
+      <div class="card-body">
+        <h3>Fleet Incident Accidant Report</h3>
+        <form
+          action="{{ url_for('driver_forms.fleet_incident_reporting_form') }}"
+          method="post"
+          class="row g-3 needs-validation"
+          enctype="multipart/form-data"
+        >
+          <div class="col-md-4">
+            <label for="Full Names" class="form-label">Driver:</label>
+            <input type="text" class="form-control" id="Full Names"
+              name="driver_name"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="ID Number" class="form-label">ID Number</label>
+            <input type="number" class="form-control" id="ID Number" name="id_number"/>
+          </div>
+  
+          <div class="col-md-12">
+            <h5>Driver's License:</h5>  
+          </div>
+  
+          <div class="col-md-4">
+            <label for="license" class="form-label">License NO:</label>
+            <input type="number" class="form-control" id="license" name="License"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Date Issued" class="form-label">Date Issued:</label>
+            <input type="date" class="form-control" id="Date Issued" name="Date Issued"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Code" class="form-label">Code:</label>
+            <input type="text" class="form-control" id="Code" name="Code"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="endorsed" class="form-label">Endorsed</label>
+            <select name="endorsed" id="endorsed" class="form-control">
+                <option value="Yes" selected>Yes</option>
+                <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-12">
+            <h5>Details of Driver Insurance:</h5>  
+          </div>
+
+          <div class="col-md-7">
+            <label for="do_you" class="form-label">Do you have your own Insurance: YES/NO</label>
+            <select name="do_you_have" id="do_you" class="form-control">
+                <option value="Yes" selected>Yes</option>
+                <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <h5>Details of your Insurance:</h5>
+            <textarea class="form-control" name="details" id="details" cols="30" rows="2"></textarea>
+          </div>
+  
+          <div class="col-md-6">
+            <h5>Details of previous Accidents:</h5>
+            <textarea class="form-control" name="details_2" id="details" cols="30" rows="2"></textarea>
+          </div>
+          
+          <div class="col-md-12">
+            <h5>Details of Flowcentric Vehicle</h5>  
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Registration" class="form-label">Registration no:</label>
+            <input type="number" class="form-control" id="Registration" name="Registration"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Milage" class="form-label">Milage:</label>
+            <input type="number" class="form-control" id="Milage" name="milage"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Make" class="form-label">Make:</label>
+            <input type="text" class="form-control" id="Make" name="make"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Model" class="form-label">Model:</label>
+            <input type="text" class="form-control" id="Model" name="model"/>
+          </div>
+
+          <div class="col-md-12">
+            <h5>Details of Passengers</h5>
+          </div>
+
+          <div class="col-md-6">
+            <label for="Passenger" class="form-label">Reason for Passenger in Vehicle?</label>
+            <textarea class="form-control" name="details_3" id="Passenger" cols="30" rows="1"></textarea>
+          </div>
+
+          <div class="col-md-6">
+            <label for="Passenger2" class="form-label">Is the Passenger a Employee?</label>
+            <select id="Passenger2" name="passenger_2" class="form-control">
+                <option value="Yes" selected>Yes</option>
+                <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label for="name" class="form-label">Name & Surname of Passenger:</label>
+            <input type="text" class="form-control" id="name" name="name"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="number" class="form-label">ID NO attach copy of ID:</label>
+            <input type="number" class="form-control" id="number" name="number"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="address" class="form-label">Address:</label>
+            <input type="text" class="form-control" id="address" name="address"/>
+          </div>
+
+          <div class="col-md-12">
+            <label for="details_2" class="form-label">Details of Injury is</label>
+            <textarea class="form-control" name="details" id="details_2" cols="20" rows="1"></textarea>
+          </div>
+
+          <div class="col-md-12">
+            <h3>Details of 3rd Party</h3>
+          </div>
+
+          <div class="col-md-4">
+            <label for="full name" class="form-label">Names and Surname of Driver</label>
+            <input type="text" class="form-control" id="full name" name="full_name"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="contact" class="form-label">Contact Details</label>
+            <input type="text" class="form-control" id="contact" name="contact"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="ID Number_2" class="form-label">ID Number</label>
+            <input type="number" class="form-control" id="ID Number_2" name="id_no"/>
+          </div>
+
+          <div class="col-md-12">
+           <h3>Driver's License</h3>
+          </div>
+
+          <div class="col-md-4">
+            <label for="license_2" class="form-label">License NO:</label>
+            <input type="number" class="form-control" id="license_2" name="license_2"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Date Issued_2" class="form-label">Date Issued:</label>
+            <input type="date" class="form-control" id="Date Issued_2" name="date_issued"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Code_2" class="form-label">Code:</label>
+            <input type="text" class="form-control" id="Code_2" name="Code_2"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="endorsed_2" class="form-label">Endorsed</label>
+            <select id="endorsed_2" name="endorsed_2" class="form-control">
+                <option value="Yes" selected>Yes</option>
+                <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="col-md-12" style="margin-top: 20px; text-decoration: underline;">
+            <h3>Address of 3rd Party Driver:</h3>
+          </div>
+
+          <div class="col-md-12">
+            <textarea class="form-control" name="address" id="address" cols="20" rows="1"></textarea>
+          </div>
+
+          <div class="col-md-12">
+            <h3>Company Vehicle Details of 3rd Party</h3>
+          </div>
+
+          <div class="col-md-4">
+            <label for="company" class="form-label">Company name</label>
+            <input type="text" class="form-control" id="company" name="company"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="company address" class="form-label">Company Address</label>
+            <input type="text" class="form-control" id="company address" name="company address"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="contact person" class="form-label">Contact Person</label>
+            <input type="text" class="form-control" id="contact person" name="contact_person"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="telephone no" class="form-label">Telephone no</label>
+            <input type="number" class="form-control" id="telephone no" name="telephone_no"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Email Address" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="Email Address" name="email_2"/>
+          </div>
+
+          <div class="col-md-12">
+            <h3>Details of 3rd Party Vehicle</h3>
+          </div>
+
+          <div class="col-md-12">
+           <h5>Details of Vehicle/Truck</h5>
+          </div>
+
+          <div class="col-md-4">
+            <label for="registration_2" class="form-label">Registration no:</label>
+            <input type="number" class="form-control" id="registration_2" name="registration_2"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Colour_2" class="form-label">Colour</label>
+            <input type="text" class="form-control" id="Colour_2" name="colour_2"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Make_2" class="form-label">Make:</label>
+            <input type="text" class="form-control" id="Make_2" name="make_2"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Model_2" class="form-label">Model:</label>
+            <input type="text" class="form-control" id="Model_2" name="model_2"/>
+          </div>
+
+          <!-- <div class="col-md-12">
+            <h5>Details of Trailer:</h5>
+           </div>
+ 
+           <div class="col-md-4">
+             <label for="registration_3" class="form-label">Registration no:</label>
+             <input type="number" class="form-control" id="registration_3" name="registration_3"/>
+           </div>
+ 
+           <div class="col-md-4">
+             <label for="Colour_3" class="form-label">Colour</label>
+             <input type="text" class="form-control" id="Colour_3" name="colour_3"/>
+           </div>
+ 
+           <div class="col-md-4">
+             <label for="Make_3" class="form-label">Make:</label>
+             <input type="text" class="form-control" id="Make_3" name="make_3"/>
+           </div>
+ 
+           <div class="col-md-4">
+             <label for="Model_3" class="form-label">Model:</label>
+             <input type="text" class="form-control" id="Model_3" name="model_3"/>
+           </div> -->
+
+           <div class="col-md-12">
+            <h5>Details of Trailer:</h5>
+           </div>
+ 
+           <div class="col-md-4">
+             <label for="registration_3" class="form-label">Registration no:</label>
+             <input type="number" class="form-control" id="registration_3" name="registration_no_3"/>
+           </div>
+ 
+           <div class="col-md-4">
+             <label for="Colour_4" class="form-label">Colour</label>
+             <input type="text" class="form-control" id="Colour_4" name="colour_4"/>
+           </div>
+ 
+           <div class="col-md-4">
+             <label for="Make_4" class="form-label">Make:</label>
+             <input type="text" class="form-control" id="Make_4" name="make_3"/>
+           </div>
+ 
+           <div class="col-md-4">
+             <label for="Model_4" class="form-label">Model:</label>
+             <input type="text" class="form-control" id="Model_4" name="model_3"/>
+           </div>
+
+           <div class="col-md-12">
+            <h3>DETAILS OF ACCIDENT:</h3>
+           </div>
+
+           <div class="col-md-12">
+            <textarea class="form-control" name="details_of" id="" cols="20" rows="1"></textarea>
+           </div>
+
+           <div class="col-md-12">
+            <label for="SAPS CASE NO" class="form-label">SAPS CASE NO:</label>
+            <input type="number" class="form-control" id="SAPS CASE NO" name="saps"/>
+          </div>
+
+          <div class="col-md-12">
+            <label for="file" class="form-label">Take Photos of Scene of Accident/Incident - attach with report</label>
+            <input type="file" class="form-control" id="file" name="file"/>
+          </div>
+
+          <div class="col-md-12">
+            <label for="file_2" class="form-label">Take Single Photos of Damage to Vehicle – attach to report</label>
+            <input type="file" class="form-control" id="file_2" name="file_2"/>
+          </div>
+
+          <div class="col-md-12">
+            <h3 style="margin-top:20px;">Reporting:</h3>
+           </div>
+
+           <div class="col-md-12">
+            <h5>Did you report Accident/Incident to your line Manager?</h5>
+           </div>
+
+           <div class="col-md-4">
+            <label for="manager" class="form-label">Manager:</label>
+            <input type="text" class="form-control" id="manager" name="manager"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="date" class="form-label">Date:</label>
+            <input type="date" class="form-control" id="date" name="date"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="time" class="form-label">Time:</label>
+            <input type="time" class="form-control" id="time" name="time"/>
+          </div>
+
+          <div class="col-md-12">
+            <h5>Did you report Fleet Manager?</h5>
+           </div>
+
+           <div class="col-md-4">
+            <label for="manager_2" class="form-label">Manager:</label>
+            <input type="text" class="form-control" id="manager_2" name="manager_2"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="date_2" class="form-label">Date:</label>
+            <input type="date" class="form-control" id="date_2" name="date_2"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="time_2" class="form-label">Time:</label>
+            <input type="time" class="form-control" id="time_2" name="time_2"/>
+          </div>
+
+
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

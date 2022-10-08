@@ -1,0 +1,63 @@
+{% extends "admin/admin_layout.html" %} {% block body %}
+
+<style>
+    .count1 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .count1>a {
+        box-shadow: 1px 0px 5px #00174c;
+        border-radius: 5px;
+        padding: 8px;
+        color: #00174c;
+    }
+
+    .driver_id_image {
+        width: 50px;
+        height: 50px;
+    }
+
+  
+
+</style>
+
+<div class="main">
+    <div class="card">
+        <div class="card-body">
+            <div class="count1">
+                <h2>Vehicle Form Page</h2>
+                <a href="{{ url_for('Admin_DriverVehicle.vehicle') }}">Add a Vehicle</a>
+            </div>
+            
+                <table class="table table-sm table-bordered" style="margin-top:20px;">
+                    <thead>
+                        <tr>
+                            <th>registration_no</th>
+                            <th>financer</th>
+                            <th>account_no</th>
+                            <th>original_capital_balance</th>
+                            <th>take_on_odo</th>
+                            <th>vehicle_manufacturer</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ve in my_vehicle %}
+                        <tr style="text-align: center;">
+                            <td>{{ ve.registration_no }}</td>
+                            <td>{{ ve.financer }}</td>
+                            <td>{{ ve.account_no }}</td>
+                            <td>{{ ve.original_capital_balance }}</td>
+                            <td>{{ ve.take_on_odo }}</td>
+                            <td>{{ ve.vehicle_manufacturer }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

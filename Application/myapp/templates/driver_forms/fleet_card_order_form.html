@@ -1,0 +1,83 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+   
+<div class="main">
+    <div class="card">
+      <div class="card-body">
+        <h4>Fleet Card Order Form</h4>
+        <form
+          action="{{ url_for('driver_forms.fleet_card_form') }}"
+          method="post"
+          class="row g-3 needs-validation"
+          enctype="multipart/form-data"
+        >
+          <div class="col-md-4">
+            <label for="registration_no" class="form-label">Registration Number: </label>
+            <input type="number" class="form-control" id="registration_no"
+              name="registration_no"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="name" class="form-label">Full Name and Surname</label>
+            <input type="text" class="form-control" id="name" name="driver_name"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Take on Odo" class="form-label">Take on Odo:</label>
+            <input type="text"class="form-control" name="take_on_odo" id="Take on Odo"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Vehicle_Manufacturer" class="form-label">Vehicle Manufacturer:</label>
+            <input type="text" class="form-control" id="Vehicle Manufacturer" name="vehicle_manufacturer"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="date_of_first_registration" class="form-label">Date of First Registration:</label>
+            <input type="date" class="form-control" id="date_of_first_registration" name="date_of_first_registration"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="model" class="form-label">Model</label>
+            <input type="text" class="form-control" id="model" name="model_name"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Colour" class="form-label">Colour:</label>
+            <input type="text" class="form-control" id="Colour" name="color_name"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Mobile Number" class="form-label">Mobile Number:</label>
+            <input type="number" class="form-control" id="Mobile Number" name="mobile_no"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Engine No" class="form-label">Engine No:</label>
+            <input type="number" class="form-control" id="Engine No" name="engine_no"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Vin No" class="form-label">Vin No:</label>
+            <input type="number" class="form-control" id="Vin No" name="vin_no"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Tank Capacity" class="form-label">Tank Capacity:</label>
+            <input type="text" class="form-control" id="Tank Capacity" name="tank_capacity"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Employee Number" class="form-label">Employee Number:</label>
+            <input type="number" class="form-control" id="Employee Number" name="employee_no" />
+          </div>
+  
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock body %}
