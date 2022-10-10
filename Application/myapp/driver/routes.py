@@ -1,8 +1,7 @@
-
 from flask import (Blueprint, request, render_template, redirect,
                     url_for, flash)
 from myapp.models import User, Vehicle
-from myapp import db
+from myapp import db, change_to_datetime
 from flask_login import login_required, current_user
 import os
 from datetime import datetime
@@ -155,7 +154,7 @@ def edit_driver(driver_id):
         else:
             driver = User.query.get(driver_id)
             return render_template("admin/driver/edit_driver.html",
-                                   driver=driver)
+                                   driver=driver, dclass="router-link-active")
 
 @Admin_DriverVehicle.route("/vehicle",methods=["GET","POST"])
 def vehicle():
@@ -187,6 +186,13 @@ def vehicle():
         license_disk_expiry_date = request.form.get("license_disk_expiry_date")
         license_disk_renewal_reminder = request.form.get("license_disk_renewal_reminder")
         assign_to_a_driver = request.form.get('assign_to_a_driver')
+        
+        # if a previous vehicle has already that driver then remove it.
+        if assign_to_a_driver != "":
+            veh = Vehicle.query.filter_by(driver_id=assign_to_a_driver).first()
+            if veh:
+                veh.driver_id = None
+                db.session.commit()
 
         vh = Vehicle(
             registration_no=registration_no,
@@ -195,30 +201,26 @@ def vehicle():
             original_capital_balance= original_capital_balance, 
             installment_amount= installment_amount,
             frequency_of_installment= freuency_of_installment,
-            # date_commenced= date_commenced, 
-            date_commenced= datetime.now(), 
-            # expiry_date= expiry_date, 
-            expiry_date= datetime.now(), 
+            date_commenced= change_to_datetime(date_commenced), 
+            expiry_date= change_to_datetime(expiry_date), 
             original_term= original_term, 
             remaining_installments= remaining_installments,
-            # balloon_risidual= balloon_residual, 
-            balloon_risidual= datetime.now(), 
+            balloon_risidual= balloon_residual, 
             outstanding_capital_balance= outstanding_capital_balance,
             advance_amount= advance_amount, 
             actual_contract_balance= actual,
             interest_rate= interest_rate, 
             take_on_odo= take_on_Odo,
             vehicle_manufacturer= vehicle_manufacturer, 
-            # date_of_first_registration= date_registration,
-            date_of_first_registration= datetime.now(),
-            model= model, color= color, 
+            date_of_first_registration= change_to_datetime(date_registration),
+            model= model, 
+            color= color, 
             mobile_number= mobile_number,
-            engine_no= engine_no, vin_no= vin_no, 
+            engine_no= engine_no,
+            vin_no= vin_no, 
             tank_capacity= tank_capacity,
-            # license_disk_expiry_date= license_disk_expiry_date,
-            license_disk_expiry_date= datetime.now(),
-            # license_disk_renewal_date= license_disk_renewal_reminder
-            license_disk_renewal_date= datetime.now(),
+            license_disk_expiry_date = change_to_datetime(license_disk_expiry_date),
+            license_disk_renewal_date= change_to_datetime(license_disk_renewal_reminder),
             driver_id= assign_to_a_driver,
         )
 
@@ -236,4 +238,84 @@ def vehicle():
 def vehicle_form():
     my_vehicle = Vehicle.query.all()
     return render_template('admin/vehicle/vehicle_form.html',
-            my_vehicle = my_vehicle)
+            my_vehicle = my_vehicle, vclass="router-link-active")
+    
+    
+@Admin_DriverVehicle.route("/vehicle_edit/<int:id>", methods=["GET", "POST"])
+def edit_vehicle(id):
+    vehicle = Vehicle.query.get(id)
+    drivers = User.query.filter_by(is_admin=False).all()
+    if request.method == "POST":
+        registration_no = request.form.get("registration_no")
+        financer = request.form.get("financer")
+        account_no = request.form.get("account_no")
+        original_capital_balance = request.form.get("original_capital_balance")
+        installment_amount = request.form.get("installment_amount")
+        freuency_of_installment = request.form.get("freuency_of_installment")
+        date_commenced = request.form.get("date_commenced")
+        expiry_date = request.form.get("expiry_date")
+        original_term = request.form.get("original_term")
+        remaining_installments = request.form.get("remaining_installments")
+        balloon_residual = request.form.get("balloon_residual")
+        outstanding_capital_balance = request.form.get("outstanding_capital_balance")
+        advance_amount = request.form.get("advance_amount")
+        actual = request.form.get("actual_contract_balance")
+        interest_rate = request.form.get("interest_rate")
+        take_on_Odo = request.form.get("Take_on_Odo")
+        vehicle_manufacturer = request.form.get("vehicle_manufacturer")
+        date_registration = request.form.get("date_of_first_registration")
+        model = request.form.get("model")
+        color = request.form.get("color")
+        mobile_number = request.form.get("mobile_number")
+        engine_no = request.form.get("engine_no")
+        vin_no = request.form.get("vin_no")
+        tank_capacity = request.form.get("tank_capacity")
+        license_disk_expiry_date = request.form.get("license_disk_expiry_date")
+        license_disk_renewal_reminder = request.form.get("license_disk_renewal_reminder")
+        assign_to_a_driver = request.form.get('assign_to_a_driver')
+        
+        vehicle.registration_no = registration_no
+        vehicle.financer = financer
+        vehicle.account_no = account_no
+        vehicle.original_capital_balance = original_capital_balance
+        vehicle.installment_amount = installment_amount
+        vehicle.frequency_of_installment = freuency_of_installment
+        vehicle.date_commenced = change_to_datetime(date_commenced)
+        vehicle.expiry_date = change_to_datetime(expiry_date)
+        vehicle.original_term = original_term
+        vehicle.remaining_installments = remaining_installments
+        vehicle.balloon_risidual = balloon_residual
+        vehicle.outstanding_capital_balance = outstanding_capital_balance
+        vehicle.advance_amount = advance_amount
+        vehicle.actual_contract_balance = actual
+        vehicle.interest_rate = interest_rate
+        vehicle.take_on_odo = take_on_Odo
+        vehicle.vehicle_manufacturer = vehicle_manufacturer
+        vehicle.date_of_first_registration = change_to_datetime(date_registration)
+        vehicle.model = model
+        vehicle.color = color
+        vehicle.mobile_number = mobile_number
+        vehicle.engine_no = engine_no
+        vehicle.vin_no = vin_no
+        vehicle.tank_capacity = tank_capacity
+        vehicle.license_disk_expiry_date = change_to_datetime(license_disk_expiry_date)
+        vehicle.license_disk_renewal_date = change_to_datetime(license_disk_renewal_reminder)
+        vehicle.driver_id = assign_to_a_driver
+        
+        db.session.commit()
+        
+        flash("Vehicle has been updated", "warning")
+        return redirect(url_for('Admin_DriverVehicle.vehicle_form'))
+    return render_template("admin/vehicle/vehicle_edit.html",
+                           vehicle=vehicle, drivers=drivers,
+                           vclass="router-link-active")
+    
+    
+@Admin_DriverVehicle.route("/delete_vehicle/<int:id>")
+def delete_vehicle(id):
+    vh = Vehicle.query.get(id)
+    vh_reg = vh.registration_no
+    db.session.delete(vh)
+    db.session.commit()
+    flash(f"Vehicle of registration no: {vh_reg} has been deleted", "danger")
+    return redirect(url_for('Admin_DriverVehicle.vehicle_form'))

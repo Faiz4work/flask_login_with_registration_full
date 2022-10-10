@@ -45,7 +45,7 @@ class User(db.Model, UserMixin):
     
     
     def __repr__(self):
-        return f"{self.username}, {self.email}, is_admin: {self.is_admin}"
+        return f"{self.username} - assigned_vehicle: {self.vehicle}"
 
 
 class Vehicle(db.Model):
@@ -86,7 +86,7 @@ class Vehicle(db.Model):
     vehicle = db.relationship("VehicleExpense", backref="vehicle", uselist=False)
     
     def __repr__(self):
-        return f"id: {self.id}, registration: {self.registration_no}, financer: {self.financer}"
+        return f"{self.registration_no}, financer: {self.financer}"
 
 
 class VehicleExpense(db.Model):

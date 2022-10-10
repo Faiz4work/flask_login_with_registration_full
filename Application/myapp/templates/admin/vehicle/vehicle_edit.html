@@ -1,0 +1,206 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block body %}
+    
+<div class="main">
+  <div class="card">
+    <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+            <h4>Modify Vehicle ({{ vehicle.registration_no }})</h4>
+            <button class="btn btn-sm btn-outline-primary"
+                onclick="history.back();">Go Back</button>
+        </div>
+      <form
+        action="{{ url_for('Admin_DriverVehicle.edit_vehicle', id=vehicle.id) }}"
+        method="post"
+        class="row g-3 needs-validation"
+        enctype="multipart/form-data"
+      >
+        <div class="col-md-4">
+          <label for="registration_no" class="form-label">Registration no</label>
+          <input type="text" class="form-control" id="registration_no"
+            name="registration_no" value="{{ vehicle.registration_no }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="financer" class="form-label">Financer</label>
+          <input type="text" class="form-control" id="financer" name="financer"
+            value="{{ vehicle.financer }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="account_no" class="form-label">Account no</label>
+            <input type="text" name="account_no" class="form-control" id="account_no" \
+                value="{{ vehicle.account_no }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="original_capital_balance" class="form-label">Original Capital Balance</label>
+          <input type="text" class="form-control" id="original_capital_balance" name="original_capital_balance"
+            value="{{ vehicle.original_capital_balance }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="installment_amount" class="form-label">Installment Amount</label>
+          <input type="number" class="form-control" id="installment_amount" name="installment_amount"
+            value="{{ vehicle.installment_amount }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="freuency_of_installment" class="form-label">Frequency of Installment</label>
+          <input type="text" class="form-control" id="freuency_of_installment" name="freuency_of_installment"
+            value="{{ vehicle.frequency_of_installment }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="date_commenced" class="form-label">Date Commenced</label>
+          <input type="date" class="form-control" id="date_commenced" name="date_commenced"
+            value="{{ vehicle.date_commenced }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="expiry_date" class="form-label">Expiry Date</label>
+          <input type="date" class="form-control" id="expiry_date" name="expiry_date" 
+          value="{{ vehicle.date_commenced }}"/>
+        </div>
+
+        <!-- <div class="col-md-4">
+          <label for="engin_no" class="form-label">Engine No</label>
+          <input type="number" class="form-control" id="engin_no" name="orig" 
+          value="{{ vehicle.engine_no }}"/>
+        </div> -->
+
+        <div class="col-md-4">
+          <label for="original_term" class="form-label">Original Term</label>
+          <input type="number" class="form-control" id="original_term" name="original_term" 
+          value="{{ vehicle.original_term }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="remaining_installments" class="form-label">No. of Remaining Installments</label>
+          <input type="number" class="form-control" id="remaining_installments" name="remaining_installments" 
+            value="{{ vehicle.remaining_installments }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="balloon_residual" class="form-label">Balloon Residual</label>
+          <input type="text" class="form-control" id="balloon_residual" name="balloon_residual" 
+            value="{{ vehicle.balloon_risidual }}"/>
+        </div>
+
+        <div class="col-md-4">
+          <label for="outstanding_capital_balance" class="form-label">Outstanding Capital Balance</label>
+          <input type="text" class="form-control" id="outstanding_capital_balance" name="outstanding_capital_balance"
+            value="{{ vehicle.outstanding_capital_balance }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="advance_amount" class="form-label">Advance Amount</label>
+          <input type="text" class="form-control" id="advance_amount" name="advance_amount"
+            value="{{ vehicle.advance_amount }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="actual_contract_balance" class="form-label">Actual Contract Balance</label>
+          <input type="text" class="form-control" id="actual_contract_balance" name="actual_contract_balance"
+            value="{{ vehicle.actual_contract_balance }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="interest_rate" class="form-label">Interest Rate</label>
+          <input type="text" class="form-control" id="interest_rate" name="interest_rate"
+            value="{{ vehicle.interest_rate }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="Take_on_Odo" class="form-label">Take On Odo </label>
+          <input type="text" class="form-control" id="Take_on_Odo" name="Take_on_Odo"
+            value="{{ vehicle.take_on_odo }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="vehicle_manufacturer" class="form-label">Vehicle Manufacturer</label>
+          <input type="text" class="form-control" id="vehicle_manufacturer" name="vehicle_manufacturer"
+            value="{{ vehicle.vehicle_manufacturer }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="date_of_first_registration" class="form-label">Date Of First Registration</label>
+          <input type="date" class="form-control" id="date_of_first_registration" name="date_of_first_registration"
+            value="{{ vehicle.date_of_first_registration }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="model" class="form-label">Model</label>
+          <input type="text" class="form-control" id="model" name="model"
+            value="{{ vehicle.model }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="color" class="form-label">Color</label>
+          <input type="text" class="form-control" id="color" name="color"
+            value="{{ vehicle.color }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="mobile_number" class="form-label">Mobile Number</label>
+          <input type="text" class="form-control" id="mobile_number" name="mobile_number"
+            value="{{ vehicle.mobile_number }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="engine_no" class="form-label">Engine No</label>
+          <input type="text" class="form-control" id="engine_no" name="engine_no"
+            value="{{ vehicle.engine_no }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="vin_no" class="form-label">Vin No</label>
+          <input type="text" class="form-control" id="vin_no" name="vin_no"
+            value="{{ vehicle.vin_no }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="tank_capacity" class="form-label">Tank Capacity</label>
+          <input type="text" class="form-control" id="tank_capacity" name="tank_capacity"
+            value="{{ vehicle.tank_capacity }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="license_disk_expiry_date" class="form-label">License Disk Expiry Date</label>
+          <input type="date" class="form-control" id="license_disk_expiry_date" name="license_disk_expiry_date"
+            value="{{ vehicle.license_disk_expiry_date }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="license_disk_renewal_reminder" class="form-label">License Disk Renewal Reminder</label>
+          <input type="date" class="form-control" id="license_disk_renewal_reminder" name="license_disk_renewal_reminder"
+          value="{{ vehicle.license_disk_renewal_date }}"  />
+        </div>
+
+        
+        <div class="col-md-4">
+          <label for="assign_to_a_driver" class="form-label">Assign to a Driver</label>
+          <select class="form-control" name="assign_to_a_driver" id="assign_to_a_driver">
+            <option value="" selected>-----</option>
+            {% for d in drivers %}
+            <option value="{{ d.id }}" 
+            {% if d.vehicle.id == vehicle.id %}
+                    selected
+            {% endif %}
+            >{{ d }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        
+
+
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

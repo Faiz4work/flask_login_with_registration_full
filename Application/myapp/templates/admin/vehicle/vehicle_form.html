@@ -25,20 +25,24 @@
 <div class="main">
     <div class="card">
         <div class="card-body">
+
+        {% include  "_flash.html" %}
+
             <div class="count1">
                 <h2>Vehicle Form Page</h2>
-                <a href="{{ url_for('Admin_DriverVehicle.vehicle') }}">Add a Vehicle</a>
+                <a href="{{ url_for('Admin_DriverVehicle.vehicle') }}"
+                    class="btn btn-outline-info">Add a Vehicle</a>
             </div>
             
-                <table class="table table-sm table-bordered" style="margin-top:20px;">
+                <table class="table table-sm table-bordered text-center" style="margin-top:20px;">
                     <thead>
-                        <tr>
-                            <th>registration_no</th>
-                            <th>financer</th>
-                            <th>account_no</th>
-                            <th>original_capital_balance</th>
-                            <th>take_on_odo</th>
-                            <th>vehicle_manufacturer</th>
+                        <tr class="bg-dark text-white">
+                            <th>Registration no</th>
+                            <th>Financer</th>
+                            <th>Account no</th>
+                            <th>Original Capital Balance</th>
+                            <th>Take on odo</th>
+                            <th colspan="2">Actions</th>
                         
                         </tr>
                     </thead>
@@ -50,7 +54,36 @@
                             <td>{{ ve.account_no }}</td>
                             <td>{{ ve.original_capital_balance }}</td>
                             <td>{{ ve.take_on_odo }}</td>
-                            <td>{{ ve.vehicle_manufacturer }}</td>
+                            <td><a href="{{ url_for('Admin_DriverVehicle.edit_vehicle', id=ve.id) }}"\
+                                class="btn btn-sm btn-outline-dark">Edit</a></td>
+                            <td>
+                                <!-- delete model starts from here -->
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-{{ve.registration_no}}">
+                                  Delete
+                                </button>
+                
+                                <!-- Modal -->
+                                <div class="modal fade" id="delete-{{ve.registration_no}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        Are you sure to delete this Vehicle? 
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a class="btn btn-primary" href="{{ url_for('Admin_DriverVehicle.delete_vehicle', id=ve.id) }}">Confirm</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- delete modal ends here -->
+                            </td>
+
                         </tr>
                         {% endfor %}
                     </tbody>

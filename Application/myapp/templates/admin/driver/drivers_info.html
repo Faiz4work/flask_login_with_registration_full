@@ -23,13 +23,14 @@
     <div class="card-body">
       <div class="count1">
         <h2>drivers page</h2>
-        <a href="{{ url_for('Admin_DriverVehicle.add_driver') }}">Add a Driver</a>
+        <a href="{{ url_for('Admin_DriverVehicle.add_driver') }}"
+          class="btn btn-outline-info">Add a Driver</a>
       </div>
 
-      <div class="drtable">
-        <table class="table table-striped">
+      <div class="drtable mt-2">
+        <table class="table table-striped table-sm">
           <thead>
-            <tr>
+            <tr class="bg-dark text-white">
               <th>Drivers Names</th>
               <th>Email</th>
               <th>Joining Date (Y-M-D)</th>
@@ -57,11 +58,12 @@
               <td>{{ driver.cell_no }}</td>
 
               <td>
-                <a href="{{ url_for('Admin_DriverVehicle.edit_driver', driver_id=driver.id) }}" class="btn btn-info">Edit</a>
+                <a href="{{ url_for('Admin_DriverVehicle.edit_driver', driver_id=driver.id) }}"
+                   class="btn btn-sm btn-outline-dark">Edit</a>
 
                 <!-- delete model starts from here -->
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#{{driver.email.split('@')[0]}}">
+                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#{{driver.email.split('@')[0]}}">
                   Delete
                 </button>
 

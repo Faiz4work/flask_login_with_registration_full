@@ -5,6 +5,7 @@ from myapp.config import Config
 from flask_admin import Admin
 from flask_admin import expose, AdminIndexView
 from flask_migrate import Migrate
+from datetime import datetime
 
 
 login_manager = LoginManager()
@@ -51,3 +52,14 @@ def create_app():
 
 
     return app
+
+
+# change date string to python datetime object
+def change_to_datetime(dstring):
+    year = dstring.split("-")[0]
+    month = dstring.split("-")[1]
+    day = dstring.split("-")[2]
+    
+    return datetime(year=int(year), month=int(month), day=int(day))
+    
+    

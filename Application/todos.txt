@@ -1,3 +1,0 @@
-virtual envirmant env ke name se bana hai
-virtual envirmant activate requirment.txt ka file install karna hai
-python se main.py activate karna hai
