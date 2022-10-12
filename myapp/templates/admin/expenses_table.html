@@ -6,9 +6,7 @@
         <thead class="table-light">
             <tr>
                 <th>Driver</th>
-                <th>Reg Num</th>
-                <th>Make</th>
-                <th>Model</th>
+                <th>Employee No</th>
                 <th>Fuel Value</th>
                 <th>oil Value</th>
                 <th>Repair and Maint.</th>
@@ -16,6 +14,7 @@
                 <th>Accident Value</th>
                 <th>Other Value</th>
                 <th>Toll Value</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -24,27 +23,71 @@
           <tr>
             <td>{{ user.username }}</td>
             <td>{{ user.employee_no }}</td>
-            <td>{{ user.vehicle.vehicle_manufacturer }}</td>
-            <td>{{ user.vehicle.model }}</td>
 
             {% if user.vehicle_expense %}
-            <td class="fuel_value">
+            <!-- for fuel value -->
+            <td class="the_value">
               {% for f in user.vehicle_expense %}
                 {{ f.fuel_value }},
               {% endfor %}
             </td>
+
+            <!-- for oil value -->
+            <td class="the_value">
+              {% for f in user.vehicle_expense %}
+                {{ f.oil_value }},
+              {% endfor %}
+            </td>
+
+            <!-- for repair and maintanance -->
+            <td class="the_value">
+              {% for f in user.vehicle_expense %}
+                {{ f.repair_and_maint }},
+              {% endfor %}
+            </td>
+
+            <!-- for tyre value -->
+            <td class="the_value">
+              {% for f in user.vehicle_expense %}
+                {{ f.tyre_value }},
+              {% endfor %}
+            </td>
+
+            <!-- for accident value -->
+            <td class="the_value">
+              {% for f in user.vehicle_expense %}
+                {{ f.accident_value }},
+              {% endfor %}
+            </td>
+
+            <!-- for other value -->
+            <td class="the_value">
+              {% for f in user.vehicle_expense %}
+                {{ f.other_value }},
+              {% endfor %}
+            </td>
+
+            <!-- for toll value -->
+            <td class="the_value">
+              {% for f in user.vehicle_expense %}
+                {{ f.toll_value }},
+              {% endfor %}
+            </td>
             
             {% else %}
-            <td>None</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
             {% endif %}
+
+            <td><a href="{{ url_for('driver_expense.index', id=user.id) }}" target="_blank" class="btn btn-sm btn-outline-warning">
+              <i class="feather icon-external-link"></i>
+              View</a></td>
             
-            
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>Null</td>
-            <td>R82.30</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -56,20 +99,6 @@
   </div>
 </div>
 
-<script>
-  $fuel_values = $(".fuel_value");
-
-  $fuel_values.each(function(){
-    $value = $(this).text().split(",");
-    var sum = 0;
-    for (let i=0; i<$value.length; i++){
-      $v = $.trim($value[i])
-      if ($v!=""){
-        sum += Number($v)
-      }
-    }
-    $(this).text(sum)
-  })
-  
+<script async src="{{ url_for('static', filename='js/admin_dashboard.js') }}"> 
   
 </script>

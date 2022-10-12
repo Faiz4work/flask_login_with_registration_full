@@ -22,10 +22,9 @@
 
       <!-- Expense table for showing expenses -->
       <div class="table-responsive">
-        <table class="table table-bordered table-sm table-hover">
+        <table class="table table-bordered table-hover">
           <thead>
             <tr class="bg-dark text-white">
-              <th>Registration no.</th>
               <th>YR MTH</th>
               <th>Make</th>
               <th>Model</th>
@@ -49,7 +48,6 @@
           <tbody>
             {% for t in maintanance %}
             <tr>
-              <td>{{ t.reg_num }}</td>
               <td>{{ t.yr_mth.strftime("%Y-%m-%d") }}</td>
               <td>{{ t.make }}</td>
               <td>{{ t.model }}</td>

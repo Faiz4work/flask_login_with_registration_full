@@ -103,6 +103,7 @@ class VehicleExpense(db.Model):
     accident_value = db.Column(db.Integer)
     other_value = db.Column(db.Integer)
     toll_value = db.Column(db.Integer)
+    added_on = db.Column(db.DateTime, default=datetime.now)
     
     # Adding relationship back to Vehicle
     vehicle_id = db.Column(db.Integer, db.ForeignKey("vehicle.id"), unique=False, nullable=True)
@@ -137,7 +138,6 @@ class FleetCard(db.Model):
 
 class MaintenancesTyres(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    driver_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     reg_num = db.Column(db.String(50))
     yr_mth = db.Column(db.DateTime, default=datetime.now())
     make = db.Column(db.String(50))
@@ -159,6 +159,11 @@ class MaintenancesTyres(db.Model):
     other_value = db.Column(db.String(50))
     description = db.Column(db.String(50))
     toll_value =   db.Column(db.String(50))
+    
+    driver_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    
+    def __repr__(self):
+        return f"{self.id}, driver_id: {self.driver_id}"
 
 
 class FleetIncidentReporting(db.Model):

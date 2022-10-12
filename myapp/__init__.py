@@ -20,7 +20,6 @@ migrate = Migrate()
 class MyHomeView(AdminIndexView):
     @expose('/')
     def index(self):
-
         from myapp.models import User
         users = User.query.filter_by(is_admin=False).all()
         return self.render('admin/index.html', users=users)

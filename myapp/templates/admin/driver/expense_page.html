@@ -1,0 +1,57 @@
+{% extends "admin/admin_layout.html" %} 
+
+{% block body %}
+
+<div class="main">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex flex-row justify-content-between">
+            <h4>{{ current_user.username }}'s all time expenses</h4>
+            <button class="btn btn-sm btn-outline-primary"
+                onclick="window.close();">Close</button>
+        </div>
+
+        <div class="table-responsive">
+        <table class="table table-sm table-striped table-hover mt-3">
+            <thead>
+                <tr class="bg-dark text-white">
+                    <th>Vehicle Reg no.</th>
+                    <th>Fuel Value</th>
+                    <th>Oil Value</th>
+                    <th>Repair and Maintanance</th>
+                    <th>Tyre Value</th>
+                    <th>Accident Value</th>
+                    <th>Other Value</th>
+                    <th>Toll Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ve in vehicle_expenses %}
+                <tr>
+                    <td>{{ ve.vehicle.registration_no }}</td>
+                    <td>{{ ve.fuel_value }}</td>
+                    <td>{{ ve.oil_value }}</td>
+                    <td>{{ ve.repair_and_maint }}</td>
+                    <td>{{ ve.tyre_value }}</td>
+                    <td>{{ ve.accident_value }}</td>
+                    <td>{{ ve.other_value }}</td>
+                    <td>{{ ve.toll_value }}</td>
+                </tr>
+                {% endfor %}
+                
+                
+                 
+            </tbody>
+            
+            
+        </table>
+        </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

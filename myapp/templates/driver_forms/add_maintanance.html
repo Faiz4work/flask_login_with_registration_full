@@ -24,10 +24,11 @@
           </div>
   
           <div class="col-md-4">
-            <label for="reg_num" class="form-label">Reg Num <span class="text-danger">*</span>
+            <label for="reg_num" class="form-label">Employee no:<span class="text-danger">*</span>
               :</label>
             <input type="text" class="form-control" id="reg_num" name="reg_num"
-              required/>
+             value="{{ current_user.employee_no }}"
+              readonly/>
           </div>
   
           <div class="col-md-4">
@@ -38,12 +39,14 @@
   
           <div class="col-md-4">
             <label for="Make" class="form-label">Make</label>
-            <input type="text" class="form-control" id="Make" name="make"/>
+            <input type="text" class="form-control" id="Make" name="make"
+              value="{{ current_user.vehicle.vehicle_manufacturer }}" readonly/>
           </div>
   
           <div class="col-md-4">
             <label for="Model" class="form-label">Model</label>
-            <input type="text" class="form-control" id="Model" name="Model"/>
+            <input type="text" class="form-control" id="Model" name="Model"
+              value="{{ current_user.vehicle.model }}" readonly/>
           </div>
   
           <div class="col-md-4">

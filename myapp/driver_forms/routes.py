@@ -414,7 +414,6 @@ def fleet_inspection_reporting_form():
             average = average,
             order = order,
             wheel = wheel,
-            # last_service_date = last_service_date,
             last_service_date = convert_str_to_datetime_obj(last_service_date),
             km = km,
             intervals = intervals,

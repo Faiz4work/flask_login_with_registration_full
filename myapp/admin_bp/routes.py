@@ -1,6 +1,6 @@
 from sqlalchemy import func
 from myapp import admin
-from myapp.models import User, Vehicle
+from myapp.models import User, Vehicle, VehicleExpense
 from flask_admin.contrib.sqla import ModelView
 from myapp import db
 from flask_admin import BaseView, expose
@@ -116,3 +116,16 @@ class DriverForm(BaseView):
         return self.render("admin/driver_addition_form.html")
     
 admin.add_view(DriverForm(name="", endpoint="drivers_form"))
+
+
+# Single Driver's all expenses page
+class DriverExpensePage(BaseView):
+    @expose("/")
+    def index(self):
+        did = request.args.get("id")
+        vehicle_expenses = VehicleExpense.query.filter_by(driver_id=did).all()
+        return self.render("admin/driver/expense_page.html", 
+                           vehicle_expenses=vehicle_expenses,
+                           dashboard="router-link-active")
+
+admin.add_view(DriverExpensePage(name="Driver Expense Page", endpoint="driver_expense"))
