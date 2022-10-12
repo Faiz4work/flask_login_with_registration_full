@@ -5,7 +5,11 @@
 <div class="main">
   <div class="card">
     <div class="card-body">
-      <h4>Vehicle Addition form</h4>
+      <div class="d-flex flex-row justify-content-between">
+            <h4>Vehicle Addition form</h4>
+            <button class="btn btn-sm btn-outline-primary"
+                onclick="history.back();">Go Back</button>
+        </div>
       <form
         action="{{ url_for('Admin_DriverVehicle.vehicle') }}"
         method="post"

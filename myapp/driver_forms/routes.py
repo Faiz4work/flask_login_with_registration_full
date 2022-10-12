@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template, request
-from myapp.models import FleetCard, MaintenancesTyres, FleetIncidentReporting, FleetNcIncidentReporting, fleet_inspection_card_form
-from myapp import db
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from myapp.models import (FleetCard, MaintenancesTyres, 
+                          FleetIncidentReporting, FleetNcIncidentReporting, 
+                          fleet_inspection_card_form, VehicleExpense)
+from myapp import db, change_to_datetime
 from datetime import datetime
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 driver_forms = Blueprint("driver_forms", __name__)
 
@@ -61,7 +63,15 @@ def fleet_card_form():
 
 
 @driver_forms.route("/maintenance_card_form",methods=["POST","GET"])
+@login_required
 def maintenance_card_form():
+    maintanance = MaintenancesTyres.query.filter_by(driver_id=current_user.id).all()
+    return render_template("driver_forms/maintenance.html",
+            maintanance_card_class="router-link-active", maintanance=maintanance)
+    
+@driver_forms.route("/add_maintanance", methods=["GET", "POST"])
+@login_required
+def add_maintanance():
     if request.method=="POST":
         Driver_name = request.form.get("driver_name")
         reg_num = request.form.get("reg_num")
@@ -87,9 +97,9 @@ def maintenance_card_form():
         Toll_Value = request.form.get("Toll_Value")
 
         tyres = MaintenancesTyres(
-            driver = Driver_name,
+            driver_id = current_user.id,
             reg_num = reg_num,
-            yr_mth = yr_mth,
+            yr_mth = change_to_datetime(yr_mth),
             make = make,
             model = Model,
             fuel_value = Fuel_Value,
@@ -99,7 +109,6 @@ def maintenance_card_form():
             repair_and_maint = Repair_and_Maint,
             maintenance_plan = Maintenance_Plan,
 
-            # maintenance_expiry_year_month_km_date = datetime.now(maintenance_expiry_date),
             maintenance_expiry_year_month_km_date = convert_str_to_datetime_obj(maintenance_expiry_date),
 
             type_of_service = Type_of_Service,
@@ -111,13 +120,42 @@ def maintenance_card_form():
             description = Description,
             toll_value = Toll_Value,
         )
-
+        
+        # if current user has already a vehicle expense object 
+        # then modify it, else add a new vehicle expense object.
+        # cvh = VehicleExpense.query.filter_by(driver_id=current_user.id).first()
+        # if cvh:
+        #     cvh.fuel_value = int(Fuel_Value)
+        #     cvh.oil_value = int(oil_value)
+        #     cvh.repair_and_maint = int(Repair_and_Maint)
+        #     cvh.tyre_value = int(Tyre_Value)
+        #     cvh.accident_value = int(Accident_Value)
+        #     cvh.other_value = int(Other_Value)
+        #     cvh.toll_value = int(Toll_Value)
+        #     cvh.vehicle_id = int()
+        #     cvh.driver_id = int()
+        
+        
+        # Adding expenses in total maintanance
+        vh = VehicleExpense(
+            fuel_value = int(Fuel_Value),
+            oil_value = int(oil_value),
+            repair_and_maint = int(Repair_and_Maint),
+            tyre_value = int(Tyre_Value),
+            accident_value = int(Accident_Value),
+            other_value = int(Other_Value),
+            toll_value = int(Toll_Value),
+            vehicle_id = current_user.vehicle.id,
+            driver_id = current_user.id
+        )
+        db.session.add(vh)
         db.session.add(tyres)
         db.session.commit()
-
-    
-
-    return render_template("driver_forms/maintenance.html",
+        
+        flash("Expense has been added.", "warning")
+        return redirect(url_for('driver_forms.maintenance_card_form'))
+        
+    return render_template("driver_forms/add_maintanance.html",
             maintanance_card_class="router-link-active")
 
 

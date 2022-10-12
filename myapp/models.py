@@ -41,8 +41,13 @@ class User(db.Model, UserMixin):
     
     
     # Adding relationship of one to one with fleetcard
-    fleet_card = db.relationship("FleetCard", backref="fleet_card_driver", uselist=False)    
+    fleet_card = db.relationship("FleetCard", backref="fleet_card_driver", uselist=False)
     
+    # Adding relationship of one to one with vehicle
+    maintanance = db.relationship("MaintenancesTyres", backref="driver_maintanance", lazy='dynamic')
+    
+    # Adding relationship of one to one with vehicle expense
+    vehicle_expense = db.relationship("VehicleExpense", backref="vehicle_expense", uselist=True)
     
     def __repr__(self):
         return f"{self.username} - assigned_vehicle: {self.vehicle}"
@@ -91,16 +96,19 @@ class Vehicle(db.Model):
 
 class VehicleExpense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    fuel_value = db.Column(db.String(50))
-    oil_value = db.Column(db.String(50))
-    repair_and_maint = db.Column(db.String(50))
-    tyre_value = db.Column(db.String(50))
-    accident_value = db.Column(db.String(50))
-    other_value = db.Column(db.String(50))
-    toll_value = db.Column(db.String(50))
+    fuel_value = db.Column(db.Integer)
+    oil_value = db.Column(db.Integer)
+    repair_and_maint = db.Column(db.Integer)
+    tyre_value = db.Column(db.Integer)
+    accident_value = db.Column(db.Integer)
+    other_value = db.Column(db.Integer)
+    toll_value = db.Column(db.Integer)
     
     # Adding relationship back to Vehicle
-    vehicle_id = db.Column(db.Integer, db.ForeignKey("vehicle.id"), unique=True, nullable=True)
+    vehicle_id = db.Column(db.Integer, db.ForeignKey("vehicle.id"), unique=False, nullable=True)
+    
+    # Adding relationship back to Vehicle
+    driver_id = db.Column(db.Integer, db.ForeignKey("user.id"), unique=False, nullable=True)
     
     def __repr__(self):
         return f"{self.id}"
@@ -129,9 +137,9 @@ class FleetCard(db.Model):
 
 class MaintenancesTyres(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    driver = db.Column(db.String(50))
+    driver_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     reg_num = db.Column(db.String(50))
-    yr_mth = db.Column(db.String(50))
+    yr_mth = db.Column(db.DateTime, default=datetime.now())
     make = db.Column(db.String(50))
     model = db.Column(db.String(50))
     fuel_value = db.Column(db.String(50))

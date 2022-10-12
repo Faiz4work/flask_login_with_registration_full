@@ -1,123 +1,86 @@
 {% extends "layout.html" %} 
 
 {% block body %}
-   
+<style>
+  body{
+    overflow: scroll;
+  }
+</style>
+
+
 <div class="main">
-    <div class="card">
-      <div class="card-body">
-        <h4>Maintenance and Tyres</h4>
-        <form
-          action="{{ url_for('driver_forms.maintenance_card_form') }}"
-          method="post"
-          class="row g-3 needs-validation"
-          enctype="multipart/form-data"
-        >
-          <div class="col-md-4">
-            <label for="driver" class="form-label">Driver</label>
-            <input type="text" class="form-control" id="driver"
-              name="driver_name"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="reg_num" class="form-label">Reg Num:</label>
-            <input type="number" class="form-control" id="reg_num" name="reg_num"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="YR_MTH" class="form-label">YR MTH</label>
-            <input type="text" name="yr_mth" class="form-control"id="YR_MTH"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="Make" class="form-label">Make</label>
-            <input type="text" class="form-control" id="Make" name="make"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="Model" class="form-label">Model</label>
-            <input type="text" class="form-control" id="Model" name="Model"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="Fuel_Value" class="form-label">Fuel Value</label>
-            <input type="text" class="form-control" id="Fuel_Value" name="Fuel_Value"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="Km Travelled" class="form-label">Km Travelled:</label>
-            <input type="text" class="form-control" id="Km Travelled" name="Km_Travelled"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="Oil_Value" class="form-label">Oil Value</label>
-            <input type="number" class="form-control" id="Oil_Value" name="Oil_Value"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="km" class="form-label">Km</label>
-            <input type="text" class="form-control" id="km" name="km"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="Repair_and_Maint" class="form-label">Repair and Maint</label>
-            <input type="text" class="form-control" id="Repair_and_Maint" name="Repair_and_Maint"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="Maintenance_Plan" class="form-label">Maintenance Plan</label>
-            <input type="text" class="form-control" id="Maintenance_Plan" name="Maintenance_Plan"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for=" Maintenance_Expiry" class="form-label">Maintenance Expiry Year/Month/Km</label>
-            <input type="date" class="form-control" id=" Maintenance_Expiry" name="maintenance_expiry_date"/>
-          </div>
-  
-          <div class="col-md-4">
-            <label for="Type_of_Service" class="form-label">Type of Service</label>
-            <input type="text" class="form-control" id="Type_of_Service" name="Type_of_Service"/>
-          </div>
+  <div class="card">
+    <div class="card-body">
 
-          <div class="col-md-4">
-            <label for="Service_Intervals" class="form-label">Service Intervals</label>
-            <input type="text" class="form-control" id="Service_Intervals" name="Service_Intervals"/>
-          </div>
+      {% include "_flash.html" %}
 
-          <div class="col-md-4">
-            <label for="Tyre_Value" class="form-label">Tyre Value</label>
-            <input type="text" class="form-control" id="Tyre_Value" name="Tyre_Value"/>
-          </div>
-
-          <div class="col-md-4">
-            <label for="Accident_Value" class="form-label">Accident Value</label>
-            <input type="text" class="form-control" id="Accident_Value" name="Accident_Value"/>
-          </div>
-
-          <div class="col-md-4">
-            <label for="Accident/Incident no/Driver" class="form-label">Accident/Incident no/Driver</label>
-            <input type="number" class="form-control" id="Accident/Incident no/Driver" name="Accident_Incident"/>
-          </div>
-
-          <div class="col-md-4">
-            <label for="Other_Value" class="form-label">Other Value</label>
-            <input type="text" class="form-control" id="Other_Value" name="Other_Value"/>
-          </div>
-
-          <div class="col-md-4">
-            <label for="Description" class="form-label">Description</label>
-            <input type="text" class="form-control" id="Description" name="Description"/>
-          </div>
-
-          <div class="col-md-4">
-            <label for="Toll_Value" class="form-label">Toll Value</label>
-            <input type="text" class="form-control" id="Toll_Value" name="Toll_Value"/>
-          </div>
-
-          <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit form</button>
-          </div>
-        </form>
+      <div class="header d-flex flex-row justify-content-between">
+        <h3>Total maintanance ({{maintanance|count}})</h3>
+        <a href="{{ url_for('driver_forms.add_maintanance') }}"
+         class="btn btn-outline-info">Add Maintanance</a>
       </div>
+
+      <!-- Expense table for showing expenses -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm table-hover">
+          <thead>
+            <tr class="bg-dark text-white">
+              <th>Registration no.</th>
+              <th>YR MTH</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Fuel Value</th>
+              <th>KM Travelled</th>
+              <th>Oil Value</th>
+              <th>Km</th>
+              <th>Repair and Maintanance</th>
+              <th>Maintanace Plan</th>
+              <th>Maintance Expire on</th>
+              <th>Type of Service</th>
+              <th>Service Interval</th>
+              <th>Tyre Value</th>
+              <th>Accident Value</th>
+              <th>Accident Incident</th>
+              <th>Other Value</th>
+              <th>Description</th>
+              <th>Toll Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for t in maintanance %}
+            <tr>
+              <td>{{ t.reg_num }}</td>
+              <td>{{ t.yr_mth.strftime("%Y-%m-%d") }}</td>
+              <td>{{ t.make }}</td>
+              <td>{{ t.model }}</td>
+              <td>{{ t.fuel_value }}</td>
+              <td>{{ t.km_travelled }}</td>
+              <td>{{ t.oil_value }}</td>
+              <td>{{ t.km }}</td>
+              <td>{{ t.repair_and_maint }}</td>
+              <td>{{ t.maintenance_plan }}</td>
+              <td>{{ t.maintenance_expiry_year_month_km_date }}</td>
+              <td>{{ t.type_of_service }}</td>
+              <td>{{ t.service_intervals }}</td>
+              <td>{{ t.tyre_value }}</td>
+              <td>{{ t.accident_value }}</td>
+              <td>{{ t.accident_incident }}</td>
+              <td>{{ t.other_value }}</td>
+              <td>{{ t.description }}</td>
+              <td>{{ t.toll_value }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+
+
+
     </div>
   </div>
-{% endblock body %}
+</div>
+
+
+
+{% endblock %}

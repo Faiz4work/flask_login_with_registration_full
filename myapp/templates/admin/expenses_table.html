@@ -7,7 +7,6 @@
             <tr>
                 <th>Driver</th>
                 <th>Reg Num</th>
-                <th>YR MTH</th>
                 <th>Make</th>
                 <th>Model</th>
                 <th>Fuel Value</th>
@@ -25,10 +24,21 @@
           <tr>
             <td>{{ user.username }}</td>
             <td>{{ user.employee_no }}</td>
-            <td>202012</td>
             <td>{{ user.vehicle.vehicle_manufacturer }}</td>
             <td>{{ user.vehicle.model }}</td>
-            <td>N</td>
+
+            {% if user.vehicle_expense %}
+            <td class="fuel_value">
+              {% for f in user.vehicle_expense %}
+                {{ f.fuel_value }},
+              {% endfor %}
+            </td>
+            
+            {% else %}
+            <td>None</td>
+            {% endif %}
+            
+            
             <td>Null</td>
             <td>Null</td>
             <td>Null</td>
@@ -41,6 +51,25 @@
 
 
         </table>
+
     </div>
   </div>
 </div>
+
+<script>
+  $fuel_values = $(".fuel_value");
+
+  $fuel_values.each(function(){
+    $value = $(this).text().split(",");
+    var sum = 0;
+    for (let i=0; i<$value.length; i++){
+      $v = $.trim($value[i])
+      if ($v!=""){
+        sum += Number($v)
+      }
+    }
+    $(this).text(sum)
+  })
+  
+  
+</script>

@@ -1,0 +1,131 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+   
+<div class="main">
+    <div class="card">
+      <div class="card-body">
+        
+        <div class="header d-flex flex-row justify-content-between">
+        <h4>Maintenance and Tyres</h4>
+        <button onclick="history.back();"
+         class="btn btn-outline-dark btn-sm">Go Back</button>
+      </div>
+        <form
+          action="{{ url_for('driver_forms.add_maintanance') }}"
+          method="post"
+          class="row g-3 needs-validation"
+          enctype="multipart/form-data"
+        >
+          <div class="col-md-4">
+            <label for="driver" class="form-label">Driver</label>
+            <input type="text" class="form-control" id="driver"
+               readonly value="{{ current_user.username }}"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="reg_num" class="form-label">Reg Num <span class="text-danger">*</span>
+              :</label>
+            <input type="text" class="form-control" id="reg_num" name="reg_num"
+              required/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="YR_MTH" class="form-label">YR MTH<span class="text-danger">*</span></label>
+            <input type="date" name="yr_mth" class="form-control"id="YR_MTH"
+              required/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Make" class="form-label">Make</label>
+            <input type="text" class="form-control" id="Make" name="make"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Model" class="form-label">Model</label>
+            <input type="text" class="form-control" id="Model" name="Model"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Fuel_Value" class="form-label">Fuel Value</label>
+            <input type="number" class="form-control" id="Fuel_Value" name="Fuel_Value"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Km Travelled" class="form-label">Km Travelled:</label>
+            <input type="number" class="form-control" id="Km Travelled" name="Km_Travelled"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Oil_Value" class="form-label">Oil Value</label>
+            <input type="number" class="form-control" id="Oil_Value" name="Oil_Value"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="km" class="form-label">Km</label>
+            <input type="text" class="form-control" id="km" name="km"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Repair_and_Maint" class="form-label">Repair and Maint</label>
+            <input type="number" class="form-control" id="Repair_and_Maint" name="Repair_and_Maint"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Maintenance_Plan" class="form-label">Maintenance Plan</label>
+            <input type="text" class="form-control" id="Maintenance_Plan" name="Maintenance_Plan"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for=" Maintenance_Expiry" class="form-label">Maintenance Expiry Year/Month/Km</label>
+            <input type="date" class="form-control" id=" Maintenance_Expiry" name="maintenance_expiry_date"/>
+          </div>
+  
+          <div class="col-md-4">
+            <label for="Type_of_Service" class="form-label">Type of Service</label>
+            <input type="text" class="form-control" id="Type_of_Service" name="Type_of_Service"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Service_Intervals" class="form-label">Service Intervals</label>
+            <input type="text" class="form-control" id="Service_Intervals" name="Service_Intervals"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Tyre_Value" class="form-label">Tyre Value</label>
+            <input type="number" class="form-control" id="Tyre_Value" name="Tyre_Value"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Accident_Value" class="form-label">Accident Value</label>
+            <input type="number" class="form-control" id="Accident_Value" name="Accident_Value"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Accident/Incident no/Driver" class="form-label">Accident/Incident no/Driver</label>
+            <input type="number" class="form-control" id="Accident/Incident no/Driver" name="Accident_Incident"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Other_Value" class="form-label">Other Value</label>
+            <input type="number" class="form-control" id="Other_Value" name="Other_Value"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="Description" name="Description"/>
+          </div>
+
+          <div class="col-md-4">
+            <label for="Toll_Value" class="form-label">Toll Value</label>
+            <input type="number" class="form-control" id="Toll_Value" name="Toll_Value"/>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock body %}
