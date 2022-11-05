@@ -6,13 +6,23 @@ from flask_admin import Admin
 from flask_admin import expose, AdminIndexView
 from flask_migrate import Migrate
 from datetime import datetime
-
+from sqlalchemy import MetaData
 
 login_manager = LoginManager()
 login_manager.login_view = "user.login"
 login_manager.login_message = "Please login to access Dashboard"
 login_manager.login_message_category = "warning"
-db = SQLAlchemy()
+metadata = MetaData(
+    naming_convention={
+    "ix": 'ix_%(column_0_label)s',
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+    }
+)
+
+db=SQLAlchemy(metadata=metadata)
 
 migrate = Migrate()
 

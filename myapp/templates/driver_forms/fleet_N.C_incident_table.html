@@ -1,0 +1,58 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+<style>
+  body{
+    overflow: scroll;
+  }
+</style>
+
+
+<div class="main">
+  <div class="card">
+    <div class="card-body">
+
+      {% include "_flash.html" %}
+
+      <div class="header d-flex flex-row justify-content-between">
+        <h3>NC Incident Reporting ({{fleet_nc|count}})</h3>
+        <a href="{{ url_for('driver_forms.fleet_N_incident_reporting_form') }}"
+         class="btn btn-outline-info mb-2">Add NC Accident </a>
+      </div>
+
+      <!-- Expense table for showing expenses -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr class="bg-dark text-white">
+              <th>Registration No</th>
+              <th>Roporting Date</th>
+              <th>NC Accident Value</th>
+              <th>Make</th>
+              <th>Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for n in fleet_nc %}
+            <tr>
+              <td>{{ n.registration_no }}</td>
+              <td>{{ n.reporting_date.strftime('%d-%m-%Y') }}</td>
+              <td>{{ n.accident_value }}</td>
+              <td>{{ n.make }}</td>
+              <td>{{ n.code }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

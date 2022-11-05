@@ -1,6 +1,7 @@
 from sqlalchemy import func
 from myapp import admin
-from myapp.models import User, Vehicle, VehicleExpense
+from myapp.models import (User, Vehicle, VehicleExpense,
+            FleetIncidentReporting, FleetNcIncidentReporting)
 from flask_admin.contrib.sqla import ModelView
 from myapp import db
 from flask_admin import BaseView, expose
@@ -124,8 +125,12 @@ class DriverExpensePage(BaseView):
     def index(self):
         did = request.args.get("id")
         vehicle_expenses = VehicleExpense.query.filter_by(driver_id=did).all()
+        incident_expenses = FleetIncidentReporting.query.filter_by(driver_id=did).all()
+        nc_incident = FleetNcIncidentReporting.query.filter_by(driver_id=did).all()
         return self.render("admin/driver/expense_page.html", 
                            vehicle_expenses=vehicle_expenses,
+                           incident_expenses=incident_expenses,
+                           nc_incident=nc_incident,
                            dashboard="router-link-active")
 
 admin.add_view(DriverExpensePage(name="Driver Expense Page", endpoint="driver_expense"))

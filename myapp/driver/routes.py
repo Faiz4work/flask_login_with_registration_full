@@ -1,6 +1,7 @@
 from flask import (Blueprint, request, render_template, redirect,
                     url_for, flash)
 from myapp.models import User, Vehicle
+from myapp.models import User, fleet_inspection_card_form
 from myapp import db, change_to_datetime
 from flask_login import login_required, current_user
 import os
@@ -319,3 +320,34 @@ def delete_vehicle(id):
     db.session.commit()
     flash(f"Vehicle of registration no: {vh_reg} has been deleted", "danger")
     return redirect(url_for('Admin_DriverVehicle.vehicle_form'))
+
+
+@Admin_DriverVehicle.route("/profile_page", methods=["POST","GET"])
+def profile_page():
+    if request.method=="POST":
+        upload_dir = os.getcwd()+"\myapp\static\profile_pics"
+        f = request.files['file1']
+        user = current_user.id
+        fl = f"{user}_{f.filename}"
+        f.save(os.path.join(upload_dir, (fl)))
+        
+        current_user.profile_pic = fl
+
+        db.session.commit()
+        
+    return render_template("driver_forms/profile_page.html")
+
+
+# fleet inspection form route 
+@Admin_DriverVehicle.route("/fleet_inpection")
+def fleet_inpection():
+    my_inspection = fleet_inspection_card_form.query.all()
+    return render_template('admin/inspection/fleet_inspection.html',
+           my_inspection = my_inspection, sclass="router-link-active")
+
+
+@Admin_DriverVehicle.route("/inspection_view/<int:id>")
+def inspection_view(id):
+    inspection = fleet_inspection_card_form.query.filter_by(driver_id=id).first()
+    return render_template('admin/inspection/inspection_view.html',
+     inspection = inspection)

@@ -18,8 +18,16 @@ def convert_str_to_datetime_obj(date_str):
     
     return final_date
 
-@driver_forms.route("/fleet_card_form",methods=["POST","GET"])
+
+
+
+@driver_forms.route("/fleet_card_form", methods=["POST","GET"])
 def fleet_card_form():
+    fleet_card = FleetCard.query.filter_by(driver_id=current_user.id).first()
+    is_available = False
+    if fleet_card:
+        is_available = True
+
     if request.method=="POST":
         registration_no = request.form.get("registration_no")
         driver_name = request.form.get("driver_name")
@@ -34,15 +42,13 @@ def fleet_card_form():
         tank_capacity = request.form.get("tank_capacity")
         employee_no = request.form.get("employee_no")
 
-        my_date_of_first_registration = convert_str_to_datetime_obj(date_of_first_registration)
-
         card = FleetCard(
             registration_no = registration_no,
             driver = driver_name,
             take_on_odo = take_on_odo,
             vehicle_manufacturer = vehicle_manufacturer,
             # date_of_first_registration = my_date_of_first_registration,
-            date_of_first_registration = my_date_of_first_registration,
+            date_of_first_registration = convert_str_to_datetime_obj(date_of_first_registration),
 
             model = model_name,
             color = color_name,
@@ -59,7 +65,8 @@ def fleet_card_form():
     
 
     return render_template("driver_forms/fleet_card_order_form.html",
-                fleet_card_class="router-link-active")
+                fleet_card_class="router-link-active",
+                        is_available = is_available)
 
 
 @driver_forms.route("/maintenance_card_form",methods=["POST","GET"])
@@ -159,11 +166,20 @@ def add_maintanance():
             maintanance_card_class="router-link-active")
 
 
+@driver_forms.route("/fleet_incident_table",methods=["POST","GET"])
+@login_required
+def fleet_incident_table():
+    fleet_data = FleetIncidentReporting.query.filter_by(driver_id=current_user.id).all()
+    return render_template("driver_forms/fleet_incident_table.html",
+            fleet_incident_table_class="router-link-active", fleet_data= fleet_data)
+
+
 @driver_forms.route("/fleet_incident_card_form",methods=["POST","GET"])
 def fleet_incident_reporting_form():
     if request.method=="POST":
         driver = request.form.get("driver_name")
         id_number_1 = request.form.get("id_number")
+        amount = request.form.get('amount')
         license_no_1 = request.form.get("License")
         date_issued_1 = request.form.get("Date Issued")
         code_1 = request.form.get("Code")
@@ -217,6 +233,7 @@ def fleet_incident_reporting_form():
         reporting = FleetIncidentReporting(
             driver = driver,
             id_number_1 = id_number_1,
+            amount = amount,
             license_no_1 = license_no_1,
 
             # date_issued_1 = date_issued_1,
@@ -273,13 +290,22 @@ def fleet_incident_reporting_form():
             # date_2 = date_2,
             reporting_date_2 = convert_str_to_datetime_obj(date_2),
             time_2 = time_2,
+            driver_id = current_user.id
         )
 
         db.session.add(reporting)
         db.session.commit()
 
     return render_template('driver_forms/fleet_incident_card_form.html',
-                fleet_incident_card_class="router-link-active")
+                fleet_incident_card_class="router-link-active" )
+
+
+@driver_forms.route('/fleet_NC_incident_table', methods=["POST","GET"])
+@login_required
+def fleet_NC_incident_table():
+    fleet_nc = FleetNcIncidentReporting.query.filter_by(driver_id=current_user.id).all()
+    return render_template('driver_forms/fleet_N.C_incident_table.html',
+           nc_card_class="router-link-active", fleet_nc = fleet_nc )
 
 
 @driver_forms.route("/fleet_N.C_incident_card_form",methods=["POST","GET"])
@@ -297,8 +323,8 @@ def fleet_N_incident_reporting_form():
         date_issued_2 = request.form.get("date_issued_2")
         Code_2 = request.form.get("Code_2")
         endorsed_2 = request.form.get("endorsed_2")
-        demage = request.form.get("demage")
-        demage_2 = request.form.get("demage_2")
+        accident_value = request.form.get("demage")
+        details_of_demage = request.form.get("demage_2")
         yes_no = request.form.get("yes_no")
         manager = request.form.get("manager")
         date = request.form.get("date")
@@ -326,8 +352,8 @@ def fleet_N_incident_reporting_form():
 
             Code_2 = Code_2,
             endorsed_2 = endorsed_2,
-            demage = demage,
-            demage_2 = demage_2,
+            accident_value = accident_value,
+            details_of_demage = details_of_demage,
             yes_no = yes_no,
             manager = manager,
             # date = date,
@@ -339,6 +365,7 @@ def fleet_N_incident_reporting_form():
             # date_2 = date_2,
             reporting_date_2 = convert_str_to_datetime_obj(date_2),
             time_2 = time_2,
+            driver_id = current_user.id,
         )
         
         db.session.add(NC)
@@ -350,8 +377,22 @@ def fleet_N_incident_reporting_form():
                 nc_card_class="router-link-active")
 
 
+@driver_forms.route('/fleet_inspection_form')
+def fleet_inspection_form():
+    inspection = fleet_inspection_card_form.query.filter_by(driver_id=current_user.id).first()
+    if inspection==None:
+        return redirect(url_for('driver_forms.fleet'))
+    return render_template('driver_forms/fleet_inspection_form.html',
+    reporting_card_class="router-link-active", inspection=inspection) 
+
+
 @driver_forms.route("/fleet_inspection_card_form",methods=["POST","GET"])
 def fleet_inspection_reporting_form():
+    inspection = fleet_inspection_card_form.query.filter_by(driver_id=current_user.id).first()
+    if inspection == None:
+        new_entry=False
+    else:
+        new_entry=True
     if request.method=="POST":
         date_1 = request.form.get("date_1")
         time_1 = request.form.get("time_1")
@@ -390,53 +431,109 @@ def fleet_inspection_reporting_form():
         person = request.form.get("person")
         signature_inspaction_person_date = request.form.get("date_3")
         time_3 = request.form.get("time_3")
-        
-        inspection = fleet_inspection_card_form(
-            # date_1 = date_1,
-            date_1 = convert_str_to_datetime_obj(date_1),
-            time_1 = time_1,
-            registration_1 = registration_1,
-            fleet = fleet,
-            milage_1 = milage_1,
-            name = name,
-            contact = contact,
-            f_name = f_name,
-            contact_2 = contact_2,
-            yes = yes,
-            yes_2 = yes_2,
-            yes_3 = yes_3,
-            yes_4 = yes_4,
-            yes_5 = yes_5,
-            yes_6 = yes_6,
-            text_1 = text_1,
-            text_2 = text_2,
-            current_milage = current_milage,
-            average = average,
-            order = order,
-            wheel = wheel,
-            last_service_date = convert_str_to_datetime_obj(last_service_date),
-            km = km,
-            intervals = intervals,
-            next_service = next_service,
-            vehicle_2 = vehicle_2,
-            tools = tools,
-            defaults = defaults,
-            current_driver = current_driver,
-            # signature_current_driver_date = signature_current_driver_date,
-            signature_current_driver_date = convert_str_to_datetime_obj(signature_current_driver_date),
-            current_sign_time = current_sign_time,
-            new_driver = new_driver,
-            # sinature_inspection_person_date = sinature_inspection_person_date,
-            signature_new_driver_date = convert_str_to_datetime_obj(signature_new_driver_date),
-            time_2 = time_2,
-            person = person,
-            # sinature_inspection_person_date = sinature_inspection_person_date,
-            signature_inspaction_person_date = convert_str_to_datetime_obj(signature_inspaction_person_date),
-            time_3 = time_3, 
-        )
 
-        db.session.add(inspection)
-        db.session.commit()
+        if not new_entry:
+            inspection = fleet_inspection_card_form(
+                # date_1 = date_1,
+                date_1 = convert_str_to_datetime_obj(date_1),
+                time_1 = time_1,
+                registration_1 = registration_1,
+                fleet = fleet,
+                milage_1 = milage_1,
+                name = name,
+                contact = contact,
+                f_name = f_name,
+                contact_2 = contact_2,
+                yes = yes,
+                yes_2 = yes_2,
+                yes_3 = yes_3,
+                yes_4 = yes_4,
+                yes_5 = yes_5,
+                yes_6 = yes_6,
+                text_1 = text_1,
+                text_2 = text_2,
+                current_milage = current_milage,
+                average = average,
+                order = order,
+                wheel = wheel,
+                last_service_date = convert_str_to_datetime_obj(last_service_date),
+                km = km,
+                intervals = intervals,
+                next_service = next_service,
+                vehicle_2 = vehicle_2,
+                tools = tools,
+                defaults = defaults,
+                current_driver = current_driver,
+                # signature_current_driver_date = signature_current_driver_date,
+                signature_current_driver_date = convert_str_to_datetime_obj(signature_current_driver_date),
+                current_sign_time = current_sign_time,
+                new_driver = new_driver,
+                # sinature_inspection_person_date = sinature_inspection_person_date,
+                signature_new_driver_date = convert_str_to_datetime_obj(signature_new_driver_date),
+                time_2 = time_2,
+                person = person,
+                # sinature_inspection_person_date = sinature_inspection_person_date,
+                signature_inspaction_person_date = convert_str_to_datetime_obj(signature_inspaction_person_date),
+                time_3 = time_3,
+                driver_id = current_user.id, 
+            )
+
+
+            db.session.add(inspection)
+            db.session.commit()
+
+        else:
+            inspection.date_1 = datetime.now(),
+            inspection.time_1 = time_1,
+            inspection.registration_1 = registration_1,
+            inspection.fleet = fleet,
+            inspection.milage_1 = milage_1,
+            inspection.name = name,
+            inspection.contact = contact,
+            inspection.f_name = f_name,
+            inspection.contact_2 = contact_2,
+            inspection.yes = yes,
+            inspection.yes_2 = yes_2,
+            inspection.yes_3 = yes_3,
+            inspection.yes_4 = yes_4,
+            inspection.yes_5 = yes_5,
+            inspection.yes_6 = yes_6,
+            inspection.text_1 = text_1,
+            inspection.text_2 = text_2,
+            inspection.current_milage = current_milage,
+            inspection.average = average,
+            inspection.order = order,
+            inspection.wheel = wheel,
+            inspection.last_service_date = datetime.now(),
+            inspection.km = km,
+            inspection.intervals = intervals,
+            inspection.next_service = next_service,
+            inspection.vehicle_2 = vehicle_2,
+            inspection.tools = tools,
+            inspection.defaults = defaults,
+            inspection.current_driver = current_driver,
+            # signature_current_driver_date = signature_current_driver_date,
+            inspection.signature_current_driver_date = datetime.now(),
+            inspection.current_sign_time = current_sign_time,
+            inspection.new_driver = new_driver,
+            # sinature_inspection_person_date = sinature_inspection_person_date,
+            inspection.signature_new_driver_date = datetime.now(),
+            inspection.time_2 = time_2,
+            inspection.person = person,
+            # sinature_inspection_person_date = sinature_inspection_person_date,
+            inspection.signature_inspaction_person_date = datetime.now(),
+            inspection.time_3 = time_3,
+            inspection.driver_id = current_user.id,
+            db.session.commit()
+
+    if new_entry:
+        return render_template('driver_forms/fleet_inspection_card_form.html',
+                reporting_card_class="router-link-active", inspection=inspection)
+
 
     return render_template('driver_forms/fleet_inspection_card_form.html',
                 reporting_card_class="router-link-active")
+
+@driver_forms.route('/fleet')
+def fleet():
+    return render_template('driver_forms/fleet_inspection_none.html')

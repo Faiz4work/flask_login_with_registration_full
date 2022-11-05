@@ -21,12 +21,12 @@
 
     <!-- page css -->
     <link
-      href="static/assets/vendors/apexcharts/dist/apexcharts.css"
+      href="/static/assets/vendors/apexcharts/dist/apexcharts.css"
       rel="stylesheet"
     />
 
     <!-- Core css -->
-    <link href="static/assets/css/app.min.css" rel="stylesheet" />
+    <link href="/static/assets/css/app.min.css" rel="stylesheet" />
 
     {% block css_link %}
     {% endblock css_link %}
@@ -228,7 +228,7 @@
                   class="avatar avatar-circle avatar-image"
                   style="width: 35px; height: 35px; line-height: 35px"
                 >
-                  <img src="static/assets/images/avatars/thumb-1.jpg" alt="" />
+                  <img src="static/profile_pics/{{current_user.profile_pic}}" alt="" />
                 </div>
                 <span class="fw-bold mx-1">{{ current_user.username }}</span>
                 <i class="feather icon-chevron-down"></i>
@@ -238,7 +238,7 @@
                   <div class="d-flex align-items-center">
                     <div class="avatar avatar-circle avatar-image">
                       <img
-                        src="static/assets/images/avatars/thumb-1.jpg"
+                        src="static/profile_pics/{{current_user.profile_pic}}"
                         alt=""
                       />
                     </div>
@@ -248,7 +248,7 @@
                     </div>
                   </div>
                 </div>
-                <a href="javascript:void(0)" class="dropdown-item">
+                <a href="{{ url_for('Admin_DriverVehicle.profile_page') }}" class="dropdown-item">
                   <div class="d-flex align-items-center">
                     <i class="font-size-lg me-2 feather icon-user"></i>
                     <span>Profile</span>
@@ -317,14 +317,14 @@
           </a>
         </li>
         <li class="nav-menu-item {{ fleet_incident_card_class }}">
-          <a href="{{url_for('driver_forms.fleet_incident_reporting_form')}}">
+          <a href="{{url_for('driver_forms.fleet_incident_table')}}">
             <i class="feather icon-calendar"></i>
             <span class="nav-menu-item-title">Fleet incident reporting</span>
           </a>
         </li>
 
         <li class="nav-menu-item {{ nc_card_class }}">
-          <a href="{{url_for('driver_forms.fleet_N_incident_reporting_form')}}">
+          <a href="{{url_for('driver_forms.fleet_NC_incident_table')}}">
             <i class="feather icon-calendar"></i>
             <span class="nav-menu-item-title">
               N.C incident reporting</span>
@@ -332,7 +332,7 @@
         </li>
 
         <li class="nav-menu-item {{ reporting_card_class }}" >
-          <a href="{{url_for('driver_forms.fleet_inspection_reporting_form')}}">
+          <a href="{{url_for('driver_forms.fleet_inspection_form')}}">
             <i class="feather icon-calendar"></i>
             <span class="nav-menu-item-title">
              Fleet inspection driver</span>

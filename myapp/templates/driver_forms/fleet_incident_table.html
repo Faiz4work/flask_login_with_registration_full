@@ -1,0 +1,58 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+<style>
+  body{
+    overflow: scroll;
+  }
+</style>
+
+
+<div class="main">
+  <div class="card">
+    <div class="card-body">
+
+      {% include "_flash.html" %}
+
+<div class="header d-flex flex-row justify-content-between">
+  <h3>Fleet Incident Reports ({{fleet_data|count}})</h3>
+  <a href="{{ url_for('driver_forms.fleet_incident_reporting_form') }}"
+    class="btn btn-outline-info mb-2">Add Accident Roport</a>
+</div>
+
+<!-- Expense table for showing expenses -->
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr class="bg-dark text-white">
+        <th>Driver</th>
+        <th>Accident Amount</th>
+        <th>Email Address</th>
+        <th>Reporting Date</th>
+        <th>Contact Person</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in fleet_data %}
+      <tr>
+        <td>{{ f.driver }}</td>
+        <td>{{ f.amount }}</td>
+        <td>{{ f.email_address }}</td>
+        <td>{{ f.reporting_date_1 }}</td>
+        <td>{{ f.contact_person }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+</div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

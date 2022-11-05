@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(70))
     joining_date = db.Column(db.DateTime, default=datetime.now)
     password = db.Column(db.String(400))
+    profile_pic = db.Column(db.String(250))
     
     is_admin = db.Column(db.Boolean, default=False)
     
@@ -170,6 +171,7 @@ class FleetIncidentReporting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     driver = db.Column(db.String(50))
     id_number_1 = db.Column(db.Integer)
+    amount = db.Column(db.Integer)
     license_no_1 = db.Column(db.Integer)
     driver_licencse_date_issued_1 = db.Column(db.DateTime, default=datetime.now)
     code_1 = db.Column(db.String(50))
@@ -219,6 +221,8 @@ class FleetIncidentReporting(db.Model):
     reporting_date_2 = db.Column(db.DateTime, default = datetime.now)
     time_2 = db.Column(db.String(50))
 
+    driver_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=True)
+
 class FleetNcIncidentReporting(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     registration_no = db.Column(db.Integer)
@@ -237,8 +241,8 @@ class FleetNcIncidentReporting(db.Model):
 
     Code_2 = db.Column(db.Integer)
     endorsed_2 = db.Column(db.String(50))
-    demage = db.Column(db.String(50))
-    demage_2 = db.Column(db.String(50))
+    accident_value = db.Column(db.String(50))
+    details_of_demage = db.Column(db.String(500))
     yes_no = db.Column(db.String(50))
     manager = db.Column(db.String(50))
 
@@ -251,6 +255,7 @@ class FleetNcIncidentReporting(db.Model):
     reporting_date_2 = db.Column(db.DateTime, default = datetime.now)
 
     time_2 = db.Column(db.String(50))
+    driver_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=True)
 
 
 class fleet_inspection_card_form(db.Model):
@@ -292,3 +297,5 @@ class fleet_inspection_card_form(db.Model):
     person = db.Column(db.String(100))
     signature_inspaction_person_date = db.Column(db.DateTime, default = datetime.now)
     time_3 = db.Column(db.String(50))
+
+    driver_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=True)

@@ -1,0 +1,70 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block body %}
+
+<style>
+    .count1 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .count1>a {
+        box-shadow: 1px 0px 5px #00174c;
+        border-radius: 5px;
+        padding: 8px;
+        color: #00174c;
+    }
+
+    .driver_id_image {
+        width: 50px;
+        height: 50px;
+    }
+
+  
+
+</style>
+
+<div class="main">
+    <div class="card">
+        <div class="card-body">
+
+        {% include  "_flash.html" %}
+
+<div class="count1">
+    <h2>All Drivers Fleet Inspection Form</h2>
+    <!-- <a href="{{ url_for('Admin_DriverVehicle.fleet_inpection') }}"
+        class="btn btn-outline-info">Add a inspection</a> -->
+</div>
+            
+<table class="table table-sm table-bordered text-center" style="margin-top:20px;">
+    <thead>
+        <tr class="bg-dark text-white">
+            <th>#</th>
+            <th>Name</th>
+            <th>Registration no</th>
+            <th colspan="2">Actions</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+       
+<tr style="text-align: center;">
+    {% for ins in my_inspection %}
+    <td>{{ loop.index }}</td>
+    <td>{{ ins.name }}</td>
+    <td>{{ ins.registration_1 }}</td>
+            
+    <td><a href="/inspection_view/{{ ins.driver_id }}" target="_blank" class="btn btn-sm btn-outline-warning p-1">
+        <i class="feather icon-external-link"></i>View</a>
+    </td>
+</tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+            
+</div>
+</div>
+</div>
+
+{% endblock body %}

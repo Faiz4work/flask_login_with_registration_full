@@ -5,7 +5,13 @@
 <div class="main">
     <div class="card">
       <div class="card-body">
-        <h3>Fleet Incident Accidant Report</h3>
+        
+        <div class="header d-flex flex-row justify-content-between">
+          <h3>Fleet Incident Accidant Report</h3>
+          <button onclick="history.back();"
+           class="btn btn-outline-dark btn-sm">Go Back</button>
+        </div>
+
         <form
           action="{{ url_for('driver_forms.fleet_incident_reporting_form') }}"
           method="post"
@@ -21,6 +27,11 @@
           <div class="col-md-4">
             <label for="ID Number" class="form-label">ID Number</label>
             <input type="number" class="form-control" id="ID Number" name="id_number"/>
+          </div>
+
+          <div class="col-md-12">
+            <label for="amount" class="form-label">Amount of demage</label>
+            <input type="number" class="form-control" id="amount" name="amount"/>
           </div>
   
           <div class="col-md-12">

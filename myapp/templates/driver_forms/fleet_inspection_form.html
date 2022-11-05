@@ -1,0 +1,295 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="main">
+<div class="card">
+<div class="card-body">
+  
+<div class="header d-flex flex-row justify-content-between">
+  <h3>Fleet Inspection Reports ({{fleet_incident_table|count}})</h3>
+  <a href="{{ url_for('driver_forms.fleet_inspection_reporting_form') }}"
+    class="btn btn-outline-info mb-2">Add Inspection</a>
+</div>
+
+<form action="{{ url_for('driver_forms.fleet_inspection_reporting_form') }}" method="post" class="row g-3 needs-validation"
+    enctype="multipart/form-data">
+    <div class="col-md-4">
+      <label for="Inspection" class="form-label">Inspection done by:</label>
+      <input type="text" value="{{ current_user.username }}"
+      readonly class="form-control">
+      
+    </div>
+
+<div class="col-md-4">
+  <label for="date" class="form-label">Date:</label>
+  <input type="text" value="{{ inspection.date_1.strftime('%d-%m-%Y') }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-4">
+  <label for="time" class="form-label">Time:</label>
+  <input type="text" value="{{ inspection.time_1 }}"
+  readonly class="form-control" >
+</div>
+
+<div class="col-md-12">
+  <h5>Details of Flowcentric Vehicle:</h5>
+</div>
+
+<div class="col-md-4">
+  <label for="registration" class="form-label">Registration no:</label>
+  <input type="text" value="{{ inspection.registration_1 }}"
+  readonly class="form-control" >
+</div>
+
+<div class="col-md-4">
+  <label for="fleet" class="form-label">Fleet no:</label>
+  <input type="text" value="{{ inspection.fleet }}"
+  readonly class="form-control" >
+</div>
+
+<div class="col-md-4">
+  <label for="milage" class="form-label">Milage:</label>
+  <input type="text" value="{{ inspection.milage_1 }}"
+  readonly class="form-control" >
+</div>
+
+<div class="col-md-12">
+  <label for="name" class="form-label">Full Names and Surname of Current Driver:</label>
+  <input type="text" value="{{ inspection.name }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="contact" class="form-label">Contact Details:</label>
+  <input type="text" value="{{ inspection.contact }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-6">
+  <label for="file" class="form-label">Full Names and Surname of New Driver:</label>
+  <input type="text" value="{{ inspection.f_name }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="contact_2" class="form-label">Contact Details:</label>
+  <input type="text" value="{{ inspection.contact_2 }}"
+  readonly class="form-control">
+</div>
+
+<!-- sameer -->
+
+<div class="col-md-12">
+  <label for="yes/no" class="form-label">Is the Driver's License Valid? YES/NO, if No does the driver have a
+    temporary License?</label>
+</div>
+<div class="col-md-5">
+  <input type="text" value="{{ inspection.yes }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="yes/no_1" class="form-label">Has the Driver's License been Endorsed? YES/NO, if YES specify
+    why?</label>
+</div>
+<div class="col-md-5">
+  <input type="text" value="{{ inspection.yes_2 }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="yes/no_2" class="form-label">Is the License Disk Valid and fitted to the Windscreen?</label>
+</div>
+<div class="col-md-5">
+  <input type="text" value="{{ inspection.yes_3 }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="yes/no_3" class="form-label">Is the branding or fleet stickers damaged?</label>
+</div>
+<div class="col-md-5">
+  <input type="text" value="{{ inspection.yes_4 }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="yes/no_4" class="form-label">Is there any damage, dents, or scratches on the vehicle?</label>
+</div>
+<div class="col-md-5">
+  <input type="text" value="{{ inspection.yes_5 }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="yes/no_5" class="form-label">Was damage, dents, or scratches reported on previous
+    occasion?</label>
+</div>
+<div class="col-md-5">
+  <input type="text" value="{{ inspection.yes_6 }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="details_of_demage" class="form-label">Details of Damage, dents, or scratches (Please take photo's
+    and send with Inspection list):</label>
+    <input type="text" value="{{ inspection.text_1 }}"
+  readonly class="form-control">
+</div>
+
+
+<div class="col-md-12">
+  <h4 style="margin-top:20px;">INSPECTION LIST</h4>
+</div>
+
+<div class="col-md-12" id="texta">
+  <h5>TYRES</h5>
+  <input type="text" value="{{ inspection.text_2 }}"
+  readonly class="form-control">
+</div>
+
+
+<div class="col-md-6">
+  <label for="current_milage" class="form-label">Current Milage done with set of tyre’s?</label>
+  <input type="text" value="{{ inspection.current_milage }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-6">
+  <label for="Average" class="form-label">Average pressure?</label>
+  <input type="text" value="{{ inspection.average }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-6">
+  <label for="order" class="form-label">Order new tyres, how many?</label>
+  <input type="text" value="{{ inspection.order }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-6">
+  <label for="Wheel" class="form-label">Spare Wheel</label>
+  <input type="text" value="{{ inspection.wheel }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <h5>SERVICE BOOK</h5>
+</div>
+
+<div class="col-md-6">
+  <label for="last_service_date" class="form-label">Date of Last Service:</label>
+  <input type="text" value="{{ inspection.last_service_date.strftime('%d-%m-%Y') }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-6">
+  <label for="k_m" class="form-label">kM:</label>
+  <input type="text" value="{{ inspection.km }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-6">
+  <label for="intervals" class="form-label">Service Intervals:</label>
+  <input type="text" value="{{ inspection.intervals }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-6">
+  <label for="next_service" class="form-label">Next Service: </label>
+  <input type="text" value="{{ inspection.next_service }}"
+  readonly class="form-control">
+</div>
+
+
+<div class="col-md-12">
+  <label for="vehicle_2" class="form-label">INTERIOR OF VEHICLE: </label>
+  <input type="text" value="{{ inspection.vehicle_2 }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="tools" class="form-label">TOOLBOX</label>
+  <input type="text" value="{{ inspection.tools }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="defaults" class="form-label">MECHANICAL DEFAULTS:</label>
+  <input type="text" value="{{ inspection.defaults }}"
+  readonly class="form-control">
+</div>
+
+<!-- form -->
+
+<div class="col-md-12">
+  <h5>SIGNATURE</h5>
+</div>
+
+<div class="col-md-4">
+  <label for="Current" class="form-label">CURRENT DRIVER: </label>
+  <input type="text" value="{{ inspection.current_driver }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-4">
+  <label for="current_sign_date" class="form-label">Date:</label>
+  <input type="text" value="{{ inspection.signature_current_driver_date.strftime('%d-%m-%Y') }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-4">
+  <label for="current_time" class="form-label">Time:</label>
+  <input type="text" value="{{ inspection.current_sign_time }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <h5>SIGNATURE</h5>
+</div>
+
+<div class="col-md-4">
+  <label for="new_driver" class="form-label">NEW DRIVER: </label>
+  <input type="text" value="{{ inspection.new_driver }}"
+  readonly class="form-control"
+</div>
+
+<div class="col-md-12">
+  <label for="date_2" class="form-label">Date:</label>
+  <input type="text" value="{{ inspection.signature_new_driver_date.strftime('%d-%m-%Y') }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-12">
+  <label for="time_2" class="form-label">Time: </label>
+  <input type="text" value="{{ inspection.time_2 }}"
+  readonly class="form-control">
+</div>
+
+
+<div class="col-12">
+  <label for="person" class="form-label">PERSON DOING THE INSPECTION:</label>
+  <input type="text" value="{{ inspection.person }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="date_3" class="form-label">Date:</label>
+  <input type="text" value="{{ inspection.signature_inspaction_person_date.strftime('%d-%m-%Y') }}"
+  readonly class="form-control">
+</div>
+
+<div class="col-md-12">
+  <label for="time_3" class="form-label">Time:</label>
+  <input type="text" value="{{ inspection.time_3 }}"
+  readonly class="form-control">
+</div>
+
+
+</form>
+
+</div>
+</div>
+</div>
+{% endblock %}

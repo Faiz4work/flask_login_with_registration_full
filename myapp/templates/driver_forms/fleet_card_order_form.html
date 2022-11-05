@@ -1,7 +1,22 @@
 {% extends "layout.html" %} 
 
 {% block body %}
-   
+
+{% if is_available %}
+
+<div class="main">
+  <div class="card">
+    <div class="card-body">
+    
+          <div class="alert alert-warning">
+            You already submitted a form.
+          </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
 <div class="main">
     <div class="card">
       <div class="card-body">
@@ -14,8 +29,7 @@
         >
           <div class="col-md-4">
             <label for="registration_no" class="form-label">Registration Number: </label>
-            <input type="number" class="form-control" id="registration_no"
-              name="registration_no"/>
+            <input type="number" name="registration_no" class="form-control" id="registration_no"/>
           </div>
   
           <div class="col-md-4">
@@ -24,13 +38,13 @@
           </div>
   
           <div class="col-md-4">
-            <label for="Take on Odo" class="form-label">Take on Odo:</label>
-            <input type="text"class="form-control" name="take_on_odo" id="Take on Odo"/>
+            <label for="Take_on_Odo" class="form-label">Take on Odo:</label>
+            <input type="text"class="form-control" name="take_on_odo" id="Take_on_Odo"/>
           </div>
   
           <div class="col-md-4">
             <label for="Vehicle_Manufacturer" class="form-label">Vehicle Manufacturer:</label>
-            <input type="text" class="form-control" id="Vehicle Manufacturer" name="vehicle_manufacturer"/>
+            <input type="text" class="form-control" id="Vehicle_Manufacturer" name="vehicle_manufacturer"/>
           </div>
   
           <div class="col-md-4">
@@ -74,8 +88,14 @@
           </div>
   
           <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn btn-primary"
+            {% if is_available %}
+                  disabled 
+            {% endif %}
+            
+             type="submit">Submit form</button>
           </div>
+          
         </form>
       </div>
     </div>

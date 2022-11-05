@@ -5,7 +5,13 @@
 <div class="main">
     <div class="card">
       <div class="card-body">
-        <h3>Non-Compliance Incident/Accident</h3>
+        
+        <div class="header d-flex flex-row justify-content-between">
+          <h3>Non-Compliance Incident/Accident</h3>
+          <button onclick="history.back();"
+           class="btn btn-outline-dark btn-sm">Go Back</button>
+        </div>
+
         <form
           action="{{ url_for('driver_forms.fleet_N_incident_reporting_form') }}"
           method="post"
@@ -18,7 +24,7 @@
         </div>
 
           <div class="col-md-4">
-            <label for="" class="form-label">Registration Number: </label>
+            <label for="registration_no" class="form-label">Registration Number: </label>
             <input type="number" class="form-control" id="registration_no"
               name="registration_no"/>
           </div>
@@ -114,10 +120,8 @@
           </div>
 
           <div class="col-md-12">
-            <h5>AMOUNT OF DAMAGE</h5>
-            <div class="col-md-12">
-              <textarea class="form-control" id="Details" cols="20" rows="1" name="demage"></textarea>
-            </div>
+            <h4 style="text-decoration:underline;">AMOUNT OF DAMAGE:</h4>
+            <input type="number" class="form-control" id="demage" name="demage"/>
           </div>
 
           <div class="col-md-12">
@@ -196,11 +200,11 @@
           </div>
 
           
-          <div class="col-md-12" style="margin-top:30px;">
+          <!-- <div class="col-md-12" style="margin-top:30px;">
             <p>Karlilen Janse van Vuuren
               Fleet Manager</p>
               <h3>Date:</h3>
-          </div>
+          </div> -->
 
        
           <div class="col-12">
